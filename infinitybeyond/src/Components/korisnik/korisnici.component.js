@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Table } from "react-bootstrap";
 
 
-export default class korisnici extends Component{
+export default class Korisnici extends Component{
 
 
     render(){

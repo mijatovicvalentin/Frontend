@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 
 
-export default class pocetna extends Component{
+export default class Nadzornaploca extends Component{
 
 
     render(){
         return (
             <Container>
-                <p>Dobrodošli na InfinityBeyond aplikaciju!</p>
+                <p>Ovdje će doći lijepi graf</p>
             </Container>
-
+            
 
         );
     }
@@ -34,3 +34,4 @@ export default class pocetna extends Component{
 
 
 
+            
