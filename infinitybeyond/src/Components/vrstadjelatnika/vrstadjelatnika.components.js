@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import { Button, Container, Table } from "react-bootstrap";
-import KorisnikDataService from "../../services/korisnik.service";
+import vrstedjelatnikaDataService from "../../services/vrstedjelatnika.service";
 import { Link } from "react-router-dom";
 import {FaEdit, FaTrash} from "react-icons/fa"
 
 
-export default class Korisnici extends Component{
+export default class VrsteDjelatnika extends Component{
 
     constructor(props){
         super(props);
 
         this.state = {
-            Korisnici: []
+            vrstedjelatnika: []
         };
 
     }
 
     componentDidMount(){
-        this.dohvatiKorisnici();
+        this.dohvatiVrstuDjelatnika();
     }
 
-    async dohvatiKorisnici(){
+    async dohvatiVrstuDjelatnika(){
 
-        await KorisnikDataService.get()
+        await vrstedjelatnikaDataService.get()
         .then(response => {
             this.setState({
-                Korisnici: response.data
+                vrsteDjelatnika: response.data
             });
             console.log(response.data);
         })
@@ -34,10 +34,10 @@ export default class Korisnici extends Component{
         });
     }
 
-    async obrisiKorisnik(sifra){
-        const odgovor = await KorisnikDataService.delete(sifra);
+    async obrisiVrstuDjelatnika(sifra){
+        const odgovor = await vrstedjelatnikaDataService.delete(sifra);
         if(odgovor.ok){
-            this.dohvatiKorisnici();
+            this.dohvatiVrstuDjelatnika();
         }else{
             alert(odgovor.poruka);
         }
@@ -46,39 +46,35 @@ export default class Korisnici extends Component{
 
     render(){
 
-        const { Korisnici } = this.state;
+        const { vrstedjelatnika } = this.state;
 
         return (
             <Container>
-               <a href="/korisnici/dodaj" className="btn btn-success gumb">
-                Dodaj novog korisnika
+               <a href="/vrstedjelatnika/dodaj" className="btn btn-success gumb">
+                Dodaj novu Vrstu Djelatnika
                </a>
                 
                <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>Ime</th>
-                        <th>Prezime</th>
-                        <th>Oib</th>
-                        <th>Email</th>
+                        <th>Naziv</th>
+                      
                     </tr>
                 </thead>
                 <tbody>
-                   { Korisnici && Korisnici.map((korisnik,index) => (
+                   { vrstedjelatnika && vrstedjelatnika.map((vrstadjelatnika,index) => (
 
                     <tr key={index}>
-                        <td>{korisnik.Ime}</td>
-                        <td>{korisnik.Prezime}</td>
-                        <td>{korisnik.Email}</td>
-                        <td>{korisnik.Oib}</td>
+                        <td>{vrstadjelatnika.Naziv}</td>
+                   
                         <td>
                             <Link className="btn btn-primary gumb"
-                            to={`/korisnici/${korisnik.sifra}`}>
+                            to={`/vrstedjelatnika/${vrstadjelatnika.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiKorisnik(korisnik.sifra)}>
+                            onClick={()=>this.obrisiVrstuDjelatnika(vrstadjelatnika.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>

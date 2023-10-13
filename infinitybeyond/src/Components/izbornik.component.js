@@ -19,16 +19,14 @@ export default class izbornik extends Component{
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="#home">Home</Nav.Link>
-                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                  <Nav.Link href="/nadzornaploca">Nadzorna ploča</Nav.Link>
+                  <NavDropdown title="programi" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/korisnici">Korisnici</NavDropdown.Item>
+                    <NavDropdown.Item href="/usluga">Usluge</NavDropdown.Item>
+                    <NavDropdown.Item href="/vrstedjelatnika">vrsteDjelatnika</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
-                      Separated link
+                    <NavDropdown.Item target="_blank" href="/swagger/index.html">
+                      Swagger
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
