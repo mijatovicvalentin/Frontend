@@ -67,28 +67,33 @@ export default class Usluge extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                   { Usluge && Usluge.map((Usluge,index) => (
+                   { Usluge && Usluge.map((Usluga,index) => (
 
                     <tr key={index}>
-                        <td>{Usluge.Naziv}</td>
+                        <td>{Usluga.naziv}</td>
+                        <td>{Usluga.destinacija}</td>
+                        <td>{Usluga.nacin_placanja}</td>
+
                         <td className="broj">
                             <NumericFormat
-                                value={Usluge.cijena}
+                                value={Usluga.cijena}
                                 displayType={'text'}
                                 thousandSeparator='.'
                                 decimalSeparator=','
                                 prefix={'€'}
                                 decimalScale={2} 
                                 fixedDecimalScale/>
+                              <td>{Usluga.broj_mjesta}</td>
+
                         </td>
                         <td>
                             <Link className="btn btn-primary gumb"
-                            to={`/usluge/${Usluge.sifra}`}>
+                            to={`/usluge/${Usluga.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiUslugu(Usluge.sifra)}>
+                            onClick={()=>this.obrisiUslugu(Usluga.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>

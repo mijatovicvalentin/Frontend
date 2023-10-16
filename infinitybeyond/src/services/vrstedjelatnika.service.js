@@ -25,14 +25,12 @@ class vrstedjelatnikaDataService{
 
 
     async post(vrstadjelatnika){
-        //console.log(smjer);
         const odgovor = await http.post('/vrstadjelatnika',vrstadjelatnika)
            .then(response => {
-             return {ok:true, poruka: 'Unio vrstudjelatnika'}; // return u odgovor
+             return {ok:true, poruka: 'Unio vrstudjelatnika'}; 
            })
            .catch(error => {
-            //console.log(error.response);
-             return {ok:false, poruka: error.response.data}; // return u odgovor
+             return {ok:false, poruka: error.response.data}; 
            });
      
            return odgovor;
@@ -41,7 +39,7 @@ class vrstedjelatnikaDataService{
     async put(sifra,vrstadjelatnika){
         const odgovor = await http.put('/vrstadjelatnika/' + sifra,vrstadjelatnika)
            .then(response => {
-             return {ok:true, poruka: 'Promjenio vrstudjelatnika'}; // return u odgovor
+             return {ok:true, poruka: 'Promjenio vrstudjelatnika'}; 
            })
            .catch(error => {
              return {ok:false, poruka: error.response.data}; 

@@ -8,7 +8,7 @@ class UslugaDataService{
     }
 
     async getBySifra(sifra) {
-        return await http.get('/usluga' + sifra);
+        return await http.get('/usluga/' + sifra);
       }
 
     async delete(sifra){

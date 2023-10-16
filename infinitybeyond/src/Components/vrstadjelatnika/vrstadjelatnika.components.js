@@ -65,7 +65,7 @@ export default class VrsteDjelatnika extends Component{
                    { vrstedjelatnika && vrstedjelatnika.map((vrstadjelatnika,index) => (
 
                     <tr key={index}>
-                        <td>{vrstadjelatnika.Naziv}</td>
+                        <td>{vrstadjelatnika.naziv}</td>
                    
                         <td>
                             <Link className="btn btn-primary gumb"

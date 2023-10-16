@@ -67,10 +67,10 @@ export default class Korisnici extends Component{
                    { Korisnici && Korisnici.map((korisnik,index) => (
 
                     <tr key={index}>
-                        <td>{korisnik.Ime}</td>
-                        <td>{korisnik.Prezime}</td>
-                        <td>{korisnik.Email}</td>
-                        <td>{korisnik.Oib}</td>
+                        <td>{korisnik.ime}</td>
+                        <td>{korisnik.prezime}</td>
+                        <td>{korisnik.email}</td>
+                        <td>{korisnik.oib}</td>
                         <td>
                             <Link className="btn btn-primary gumb"
                             to={`/korisnici/${korisnik.sifra}`}>

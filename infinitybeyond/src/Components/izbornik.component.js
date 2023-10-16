@@ -20,10 +20,10 @@ export default class izbornik extends Component{
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <Nav.Link href="/nadzornaploca">Nadzorna ploča</Nav.Link>
-                  <NavDropdown title="programi" id="basic-nav-dropdown">
+                  <NavDropdown title="Izbornik" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/korisnici">Korisnici</NavDropdown.Item>
-                    <NavDropdown.Item href="/usluga">Usluge</NavDropdown.Item>
-                    <NavDropdown.Item href="/vrstedjelatnika">vrsteDjelatnika</NavDropdown.Item>
+                    <NavDropdown.Item href="/usluge">Usluge</NavDropdown.Item>
+                    <NavDropdown.Item href="/VrsteDjelatnika">Vrste Djelatnika</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item target="_blank" href="/swagger/index.html">
                       Swagger
