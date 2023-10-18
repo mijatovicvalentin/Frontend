@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import vrstedjelatnikaDataService from "../../services/vrstedjelatnika.service";
+import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -21,7 +21,7 @@ export default class DodajVrstaDjelatnika extends Component {
   async DodajVrstaDjelatnika(vrstadjelatnika) {
     const odgovor = await vrstedjelatnikaDataService.post(vrstadjelatnika);
     if(odgovor.ok){
-      window.location.href='/vrstedjelatnika';
+      window.location.href='/Vrstadjelatnika';
     }else{
 
       let poruke = '';
@@ -42,7 +42,7 @@ export default class DodajVrstaDjelatnika extends Component {
     const podaci = new FormData(e.target);
 
     this.DodajVrstaDjelatnika({
-      Naziv: podaci.get('Ime'),
+      Naziv: podaci.get('Naziv'),
     
     });
     
@@ -64,7 +64,7 @@ export default class DodajVrstaDjelatnika extends Component {
 
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/vrstedjelatnika`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/Vrstadjelatnika`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">

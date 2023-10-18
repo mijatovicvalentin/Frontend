@@ -26,7 +26,7 @@ class UslugaDataService{
 
     async post(Usluga){
         //console.log(smjer);
-        const odgovor = await http.post('/korisnik',Usluga)
+        const odgovor = await http.post('/usluga',Usluga)
            .then(response => {
              return {ok:true, poruka: 'Unio uslugu'}; // return u odgovor
            })

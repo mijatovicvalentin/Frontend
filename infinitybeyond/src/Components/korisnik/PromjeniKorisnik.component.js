@@ -23,7 +23,7 @@ export default class PromjeniKorisnik extends Component {
 
 
     this.state = {
-      polaznik: {}
+      korisnik: {}
     };
   }
 
@@ -60,17 +60,11 @@ export default class PromjeniKorisnik extends Component {
 
 
   handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    
     e.preventDefault();
 
-    // Read the form data
-    const podaci = new FormData(e.target);
-    //Object.keys(formData).forEach(fieldName => {
-    // console.log(fieldName, formData[fieldName]);
-    //})
     
-    //console.log(podaci.get('verificiran'));
-    // You can pass formData as a service body directly:
+    const podaci = new FormData(e.target);
 
     this.promjeniKorisnik({
         Ime: podaci.get('Ime'),

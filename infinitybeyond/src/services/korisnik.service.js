@@ -8,7 +8,7 @@ class KorisnikDataService{
     }
 
     async getBySifra(sifra) {
-        return await http.get('/korisnik/' + sifra);
+        return await http.get('/Korisnik/' + sifra);
       }
 
     async delete(sifra){
@@ -39,13 +39,11 @@ class KorisnikDataService{
     }
 
     async put(sifra,korisnik){
-        //console.log(smjer);
         const odgovor = await http.put('/korisnik/' + sifra,korisnik)
            .then(response => {
              return {ok:true, poruka: 'Promjenio korisnika'}; // return u odgovor
            })
            .catch(error => {
-            //console.log(error.response);
              return {ok:false, poruka: error.response.data}; // return u odgovor
            });
      

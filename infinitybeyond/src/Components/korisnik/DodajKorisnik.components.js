@@ -65,7 +65,7 @@ export default class DodajKorisnik extends Component {
 
           <Form.Group className="mb-3" controlId="Prezime">
             <Form.Label>Prezime</Form.Label>
-            <Form.Control type="text" name="Prezime" placeholder="Ime korisnika" maxLength={255} required/>
+            <Form.Control type="text" name="Prezime" placeholder="Prezime korisnika" maxLength={255} required/>
           </Form.Group>
 
 

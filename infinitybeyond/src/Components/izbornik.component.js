@@ -23,7 +23,9 @@ export default class izbornik extends Component{
                   <NavDropdown title="Izbornik" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/korisnici">Korisnici</NavDropdown.Item>
                     <NavDropdown.Item href="/usluge">Usluge</NavDropdown.Item>
-                    <NavDropdown.Item href="/VrsteDjelatnika">Vrste Djelatnika</NavDropdown.Item>
+                    <NavDropdown.Item href="/vrstadjelatnika">Vrste Djelatnika</NavDropdown.Item>
+                    <NavDropdown.Item href="/djelatnici">Djelatnici</NavDropdown.Item>
+                    <NavDropdown.Item href="/vozila">Vozila</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item target="_blank" href="/swagger/index.html">
                       Swagger

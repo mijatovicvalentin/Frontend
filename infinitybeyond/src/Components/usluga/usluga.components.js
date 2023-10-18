@@ -73,7 +73,6 @@ export default class Usluge extends Component{
                         <td>{Usluga.naziv}</td>
                         <td>{Usluga.destinacija}</td>
                         <td>{Usluga.nacin_placanja}</td>
-
                         <td className="broj">
                             <NumericFormat
                                 value={Usluga.cijena}
@@ -83,17 +82,19 @@ export default class Usluge extends Component{
                                 prefix={'€'}
                                 decimalScale={2} 
                                 fixedDecimalScale/>
-                              <td>{Usluga.broj_mjesta}</td>
+
+                       
 
                         </td>
+                        <td>{Usluga.broj_mjesta}</td>
                         <td>
-                            <Link className="btn btn-primary gumb"
-                            to={`/usluge/${Usluga.sifra}`}>
+                        <Link className="btn btn-primary gumb"
+                            to={`/korisnici/${Usluga.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiUslugu(Usluga.sifra)}>
+                            onClick={()=>this.obrisiKorisnik(Usluga.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>
@@ -102,6 +103,7 @@ export default class Usluge extends Component{
                    ))}
                 </tbody>
                </Table>
+
 
 
 

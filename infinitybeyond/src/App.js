@@ -13,6 +13,13 @@ import PromjeniUslugu from './Components/usluga/PromjeniUslugu.component';
 import VrsteDjelatnika from './Components/vrstadjelatnika/vrstadjelatnika.components';
 import DodajVrstaDjelatnika from './Components/vrstadjelatnika/DodajVrstuDdjelatnika.component';
 import PromjeniVrstuDjelatnika from './Components/vrstadjelatnika/PromjeniVrstuDjelatnika.component';
+import Djelatnici from './Components/djelatnik/djelatnici.component';
+import DodajDjelatnik from './Components/djelatnik/DodajDjelatnik.component';
+import PromjeniDjelatnik from './Components/djelatnik/PromjeniDjelatnik.component';
+import Vozila from './Components/vozilo/vozila.component';
+import DodajVozilo from './Components/vozilo/DodajVozilo.component';
+import PromjeniVozilo from './Components/vozilo/PromjeniVozilo.component';
+
 
 
 export default function App() {
@@ -28,9 +35,15 @@ export default function App() {
         <Route path='/usluge' element={<Usluge />} />
         <Route path="/usluge/dodaj" element={<DodajUsluga />} />
         <Route path="/usluge/:sifra" element={<PromjeniUslugu />} />
-        <Route path='/VrsteDjelatnika' element={<VrsteDjelatnika />} />
-        <Route path="/vrstedjelatnika/dodaj" element={<DodajVrstaDjelatnika />} />
-        <Route path="/vrstedjelatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
+        <Route path='/vrstadjelatnika' element={<VrsteDjelatnika />} />
+        <Route path="/vrstadjelatnika/dodaj" element={<DodajVrstaDjelatnika />} />
+        <Route path="/vrstadjelatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
+        <Route path="/djelatnici" element={<Djelatnici />} />
+        <Route path="/djelatnici/dodaj" element={<DodajDjelatnik />} />
+        <Route path="/djelatnici/:sifra" element={<PromjeniDjelatnik />} />
+        <Route path="/vozila" element={<Vozila />} />
+        <Route path="/vozila/dodaj" element={<DodajVozilo />} />
+        <Route path="/vozila/:sifra" element={<PromjeniVozilo />} />
 
       </Routes>
      

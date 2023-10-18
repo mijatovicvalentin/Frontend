@@ -4,11 +4,11 @@ import http from "../http-common";
 class vrstedjelatnikaDataService{
 
     async get(){
-        return await http.get('/vrstedjelatnika');
+        return await http.get('/vrstadjelatnika');
     }
 
     async getBySifra(sifra) {
-        return await http.get('/vrstadjelatnika' + sifra);
+        return await http.get('/vrstadjelatnika/' + sifra);
       }
 
     async delete(sifra){
@@ -27,9 +27,10 @@ class vrstedjelatnikaDataService{
     async post(vrstadjelatnika){
         const odgovor = await http.post('/vrstadjelatnika',vrstadjelatnika)
            .then(response => {
-             return {ok:true, poruka: 'Unio vrstudjelatnika'}; 
+             return {ok:true, poruka: 'Unio vrstadjelatnika'}; 
            })
            .catch(error => {
+           
              return {ok:false, poruka: error.response.data}; 
            });
      
@@ -39,7 +40,7 @@ class vrstedjelatnikaDataService{
     async put(sifra,vrstadjelatnika){
         const odgovor = await http.put('/vrstadjelatnika/' + sifra,vrstadjelatnika)
            .then(response => {
-             return {ok:true, poruka: 'Promjenio vrstudjelatnika'}; 
+             return {ok:true, poruka: 'Promjenio vrstadjelatnika'}; 
            })
            .catch(error => {
              return {ok:false, poruka: error.response.data}; 

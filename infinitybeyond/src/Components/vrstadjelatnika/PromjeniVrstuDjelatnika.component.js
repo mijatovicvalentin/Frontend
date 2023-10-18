@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import vrstedjelatnikaDataService from "../../services/vrstedjelatnika.service";
+import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -28,16 +28,14 @@ export default class PromjeniVrstuDjelatnika extends Component {
   }
 
 
-  async dohvatiKorisnik() {
-    // ovo mora bolje
+  async dohvativrstadjelatnika() {
     let href = window.location.href;
     let niz = href.split('/'); 
     await vrstedjelatnikaDataService.getBySifra(niz[niz.length-1])
       .then(response => {
         this.setState({
-          korisnik: response.data
+          vrstadjelatnika: response.data
         });
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -45,14 +43,12 @@ export default class PromjeniVrstuDjelatnika extends Component {
   }
 
   async promjeniVrstDjelatnika(vrstadjelatnika) {
-    // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
     const odgovor = await vrstedjelatnikaDataService.put(niz[niz.length-1],vrstadjelatnika);
     if(odgovor.ok){
-      window.location.href='/vrstedjelatnika';
+      window.location.href='/Vrstadjelatnika';
     }else{
-      // pokaži grešku
       console.log(odgovor);
     }
   }
@@ -60,22 +56,16 @@ export default class PromjeniVrstuDjelatnika extends Component {
 
 
   handleSubmit(e) {
-    // Prevent the browser from reloading the page
     e.preventDefault();
 
-    // Read the form data
     const podaci = new FormData(e.target);
-    //Object.keys(formData).forEach(fieldName => {
-    // console.log(fieldName, formData[fieldName]);
-    //})
-    
-    //console.log(podaci.get('verificiran'));
-    // You can pass formData as a service body directly:
+
 
     this.promjeniKorisnik({
         Naziv: podaci.get('Naziv'),
     
     });
+    
     
   }
 
@@ -90,7 +80,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
 
         <Form.Group className="mb-3" controlId="Naziv">
             <Form.Label>Naziv</Form.Label>
-            <Form.Control type="text" name="Naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv vrstedjelatnika" maxLength={255} required/>
+            <Form.Control type="text" name="Naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv Vrstadjelatnika" maxLength={255} required/>
           </Form.Group>
 
 
@@ -98,7 +88,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
          
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/vrstedjelatnika`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/Vrstadjelatnika`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">
