@@ -62,7 +62,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
 
 
     this.promjeniKorisnik({
-        Naziv: podaci.get('Naziv'),
+        Naziv: podaci.get('naziv'),
     
     });
     
@@ -78,9 +78,9 @@ export default class PromjeniVrstuDjelatnika extends Component {
     <Container>
         <Form onSubmit={this.handleSubmit}>
 
-        <Form.Group className="mb-3" controlId="Naziv">
-            <Form.Label>Naziv</Form.Label>
-            <Form.Control type="text" name="Naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv Vrstadjelatnika" maxLength={255} required/>
+        <Form.Group className="mb-3" controlId="naziv">
+            <Form.Label>naziv</Form.Label>
+            <Form.Control type="text" name="naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv Vrstadjelatnika" maxLength={255} required/>
           </Form.Group>
 
 

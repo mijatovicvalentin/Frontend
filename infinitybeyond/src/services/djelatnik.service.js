@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 class DjelatnikDataService {
-  getAll() {
+  get() {
     return http.get("/djelatnik");
   }
 

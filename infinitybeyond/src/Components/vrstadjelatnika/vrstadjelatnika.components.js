@@ -60,7 +60,7 @@ export default class VrsteDjelatnika extends Component{
                <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                        <th>Naziv</th>
+                        <th>naziv</th>
                       
                     </tr>
                 </thead>

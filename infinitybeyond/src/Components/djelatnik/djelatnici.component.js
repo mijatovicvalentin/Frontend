@@ -69,7 +69,7 @@ export default class Djelatnici extends Component{
                     <th>oib</th>
                     <th>kontakt</th>
                     <th>jedinstvenibroj</th>
-                    <th>vrstadjelatnika</th>
+                    <th>vrsta_djelatnika</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,8 +79,9 @@ export default class Djelatnici extends Component{
                         <td>{Djelatnici.ime}</td>
                         <td>{Djelatnici.prezime}</td>
                         <td>{Djelatnici.oib }</td>
+                        <td>{Djelatnici.kontakt }</td>        
                         <td>{Djelatnici.jedinstvenibroj}</td>
-                        <td>{Djelatnici.vrstadjelatnika}</td>
+                        <td>{Djelatnici.vrsta_djelatnika}</td>
       
                         <td>
                         <Link className="btn btn-primary gumb"

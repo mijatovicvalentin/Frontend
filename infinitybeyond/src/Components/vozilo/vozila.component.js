@@ -75,13 +75,13 @@ export default class Vozila extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                   { Vozila && Vozila.map((Vozila,index) => (
+                   { Vozila && Vozila.map((v,index) => (
 
                     <tr key={index}>
-                        <td>{Vozila.naziv}</td>
+                        <td>{v.naziv}</td>
                         <td className="broj">
                             <NumericFormat
-                                value={Vozila.cijena}
+                                value={v.cijena}
                                 displayType={'text'}
                                 thousandSeparator='.'
                                 decimalSeparator=','
@@ -91,21 +91,21 @@ export default class Vozila extends Component{
                         </td>
 
                         <td className="naslovdatum">
-                    {Vozila.datumPocetka==null ? "Nije definirano" :
-                    moment.utc(Vozila.datumPocetka).format("DD. MM. YYYY. HH:mm")}
+                    {v.datumPocetka==null ? "Nije definirano" :
+                    moment.utc(v.datumPocetka).format("DD. MM. YYYY. HH:mm")}
                         </td>
-                        <td>{Vozila.djelatnik }</td>
+                        <td>{v.djelatnik }</td>
                        
-                        <td>{Vozila.tezina}</td>
+                        <td>{v.tezina}</td>
       
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/djelatnici/${Vozila.sifra}`}>
+                            to={`/djelatnici/${v.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiDjelatnika(Vozila.sifra)}>
+                            onClick={()=>this.obrisiVozila(v.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>

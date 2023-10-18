@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 class VoziloDataService {
-  getAll() {
+  get() {
     return http.get("/vozilo");
   }
 

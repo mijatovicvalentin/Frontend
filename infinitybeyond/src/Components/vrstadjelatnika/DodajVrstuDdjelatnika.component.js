@@ -42,7 +42,7 @@ export default class DodajVrstaDjelatnika extends Component {
     const podaci = new FormData(e.target);
 
     this.DodajVrstaDjelatnika({
-      Naziv: podaci.get('Naziv'),
+      Naziv: podaci.get('naziv'),
     
     });
     
@@ -55,8 +55,8 @@ export default class DodajVrstaDjelatnika extends Component {
         <Form onSubmit={this.handleSubmit}>
 
 
-        <Form.Group className="mb-3" controlId="Naziv">
-            <Form.Label>Naziv</Form.Label>
+        <Form.Group className="mb-3" controlId="naziv">
+            <Form.Label>naziv</Form.Label>
             <Form.Control type="text" name="Naziv" placeholder="Naziv Vrste djelatnika" maxLength={255} required/>
           </Form.Group>
 
