@@ -22,10 +22,10 @@ export default class PromjeniVozilo extends Component {
    
        
 
-    this.vozilo = this.dohvatiVozilo();
-    this.PromjeniVozilo = this.promjeniVozilobind(this);
+    this.vozilo = this.DohvatiVozilo();
+    this.PromjeniVozilo = this.PromjeniVozilo(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.djelatnik = this.dohvatiDjelatnik();
+    this.djelatnik = this.DohvatiDjelatnik();
     
 
   
@@ -39,7 +39,7 @@ export default class PromjeniVozilo extends Component {
 
 
 
-  async dohvatiVozilo() {
+  async DohvatiVozilo() {
     // ovo mora bolje
     //console.log('Dohvaćam grupu');
     let href = window.location.href;
@@ -62,7 +62,7 @@ export default class PromjeniVozilo extends Component {
    
   
 
-  async promjeniVozilo(vozilo) {
+  async PromjeniVozilo(vozilo) {
     const odgovor = await VoziloDataService.post(vozilo);
     if(odgovor.ok){
       // routing na smjerovi
@@ -73,7 +73,7 @@ export default class PromjeniVozilo extends Component {
     }
   }
 
-  async dohvatiDjelatnik() {
+  async DohvatiDjelatnik() {
     // console.log('Dohvaćam vrstadjelatnika');
      await DjelatnikDataService.get()
        .then(response => {
@@ -100,7 +100,7 @@ export default class PromjeniVozilo extends Component {
     let datum = moment.utc(podaci.get('datum_proizvodnje') + ' ' + podaci.get('vrijeme'));
     console.log(datum);
 
-    this.dodajVozilo({
+    this.DodajVozilo({
       naziv: podaci.get('naziv'),
       cijena: parseFloat(podaci.get('prezime')),
       datum_proizvodnje: datum,

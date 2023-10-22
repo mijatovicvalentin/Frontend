@@ -24,8 +24,8 @@ class vrstedjelatnikaDataService{
     }
 
 
-    async post(vrstadjelatnika){
-        const odgovor = await http.post('/vrstadjelatnika',vrstadjelatnika)
+    async post(vrsta_djelatnika){
+        const odgovor = await http.post('/vrstadjelatnika',vrsta_djelatnika)
            .then(response => {
              return {ok:true, poruka: 'Unio vrstadjelatnika'}; 
            })

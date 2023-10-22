@@ -3,7 +3,6 @@ import { Button, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {FaEdit, FaTrash} from "react-icons/fa"
 import VoziloDataService from  "../../services/vozilo.service";
-import { Modal } from 'react-bootstrap';
 import moment from 'moment';
 import { NumericFormat } from "react-number-format";
 
@@ -20,17 +19,14 @@ export default class Vozila extends Component{
             Vozila: []
         };
 
+
     }
-
-    otvoriModal = () => this.setState({ prikaziModal: true });
-    zatvoriModal = () => this.setState({ prikaziModal: false });
-
 
     componentDidMount(){
-        this.dohvatiVozila();
+        this.DohvatiVozila();
     }
 
-    async dohvatiVozila(){
+    async DohvatiVozila(){
 
         await VoziloDataService.get()
         .then(response => {
@@ -44,7 +40,7 @@ export default class Vozila extends Component{
         });
     }
 
-    async obrisiVozila(sifra){
+    async ObrisiVozila(sifra){
         const odgovor = await VoziloDataService.delete(sifra);
         if(odgovor.ok){
             this.dohvatiVozila();
@@ -91,8 +87,8 @@ export default class Vozila extends Component{
                         </td>
 
                         <td className="naslovdatum">
-                    {v.datumPocetka==null ? "Nije definirano" :
-                    moment.utc(v.datumPocetka).format("DD. MM. YYYY. HH:mm")}
+                    {v.datumPocetka}
+                    {moment.utc(v.datumPocetka).format("DD. MM. YYYY. HH:mm")}
                         </td>
                         <td>{v.djelatnik }</td>
                        
@@ -105,7 +101,7 @@ export default class Vozila extends Component{
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiVozila(v.sifra)}>
+                            onClick={()=>this.ObrisiVozila(v.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>
@@ -115,17 +111,6 @@ export default class Vozila extends Component{
                 </tbody>
                </Table>
 
-               <Modal show={this.state.prikaziModal} onHide={this.zatvoriModal}>
-              <Modal.Header closeButton>
-                <Modal.Title>Greška prilikom brisanja</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Djelatnik ima vrstadjelatnika.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.zatvoriModal}>
-                  Zatvori
-                </Button>
-              </Modal.Footer>
-            </Modal>
 
 
             </Container>

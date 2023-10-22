@@ -28,12 +28,9 @@ export default class DodajDjelatnik extends Component {
 
   }
 
-  componentDidMount() {
-    this.dohvativrstadjelatnika();
+  
 
-  }
-
-  async dodajDjelatnik(djelatnik) {
+  async DodajDjelatnik(djelatnik) {
     const odgovor = await DjelatnikDataService.post(djelatnik);
     if(odgovor.ok){
       // routing na smjerovi
@@ -43,7 +40,7 @@ export default class DodajDjelatnik extends Component {
       console.log(odgovor);
     }
   }
-  async dohvativrstadjelatnika() {
+  async Dohvativrstadjelatnika() {
 
    
     await vrstedjelatnikaDataService.get()
@@ -125,8 +122,8 @@ export default class DodajDjelatnik extends Component {
             <Form.Select onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
-            {VrsteDjelatnika && VrsteDjelatnika.map((vrstedjelatnika,index) => (
-                  <option key={index} value={vrstedjelatnika.sifra}></option>
+            {VrsteDjelatnika && VrsteDjelatnika.map((vrstadjelatnika,index) => (
+                  <option key={index} value={vrstadjelatnika.sifra}></option>
 
             ))}
             </Form.Select>

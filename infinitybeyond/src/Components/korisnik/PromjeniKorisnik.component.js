@@ -16,7 +16,7 @@ export default class PromjeniKorisnik extends Component {
     super(props);
 
     this.Korisnik = this.dohvatiKorisnik();
-    this.PromjeniKorisnik = this.PromjeniKorisnik.bind(this);
+    this.PromjeniKorisnik = this.promjeniKorisnik.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
     

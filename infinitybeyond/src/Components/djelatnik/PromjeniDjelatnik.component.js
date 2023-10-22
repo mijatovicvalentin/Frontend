@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
+import VrsteDjelatnika from "../vrstadjelatnika/vrstadjelatnika.components";
 
 
 
@@ -20,10 +21,10 @@ export default class PromjeniDjelatnik extends Component {
    
        
 
-    this.djelatnik = this.dohvatiDjelatnik();
-    this.promjeniDjelatnik = this.promjeniDjelatnikbind(this);
+    this.djelatnik = this.DohvatiDjelatnik();
+    this.promjeniDjelatnik = this.PromjeniDjelatnik(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.vrstadjelatnika = this.dohvativrstadjelatnika();
+    this.vrstadjelatnika = this.Dohvativrstadjelatnika();
     
 
   
@@ -37,7 +38,7 @@ export default class PromjeniDjelatnik extends Component {
 
 
 
-  async dohvatiDjelatnik() {
+  async DohvatiDjelatnik() {
     let href = window.location.href;
     let niz = href.split('/'); 
     await DjelatnikDataService.getBySifra(niz[niz.length-1])
@@ -54,7 +55,7 @@ export default class PromjeniDjelatnik extends Component {
    
   }
 
-  async promjeniDjelatnik(djelatnik) {
+  async PromjeniDjelatnik(djelatnik) {
     const odgovor = await DjelatnikDataService.post(djelatnik);
     if(odgovor.ok){
       // routing na smjerovi
@@ -65,7 +66,7 @@ export default class PromjeniDjelatnik extends Component {
     }
   }
 
-  async dohvativrstadjelatnika() {
+  async Dohvativrstadjelatnika() {
     // console.log('Dohvaćam vrstadjelatnika');
      await vrstedjelatnikaService.get()
        .then(response => {
@@ -90,7 +91,7 @@ export default class PromjeniDjelatnik extends Component {
     console.log(podaci.get('kontakt'));
     console.log(podaci.get('jedinstvenibroj'));
 
-    this.dodajDjelatnik({
+    this.DodajDjelatnik({
       ime: podaci.get('ime'),
       prezime: podaci.get('prezime'),
       oib: podaci.get('oib'),
@@ -152,7 +153,7 @@ export default class PromjeniDjelatnik extends Component {
             <Form.Select defaultValue={djelatnik.vrstadjelatnika} onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
-            {vrstadjelatnika && vrstadjelatnika.map((vrstadjelatnika,index) => (
+            {VrsteDjelatnika && VrsteDjelatnika.map((vrstadjelatnika,index) => (
                   <option key={index} value={vrstadjelatnika.sifra}></option>
 
             ))}

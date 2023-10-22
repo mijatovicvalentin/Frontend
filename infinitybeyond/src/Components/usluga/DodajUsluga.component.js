@@ -10,23 +10,26 @@ import { Link } from "react-router-dom";
 
 
 
+
+
 export default class DodajUsluga extends Component {
 
   constructor(props) {
     super(props);
-    this.dodajUslugu = this.dodajUslugu.bind(this);
+    this.DodajKorisnik = this.DodajUsluga.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async dodajUslugu(usluga) {
-    const odgovor = await UslugaDataService.post(usluga);
+  async DodajUsluga(Usluga) {
+    const odgovor = await UslugaDataService.post(Usluga);
     if(odgovor.ok){
       window.location.href='/usluge';
     }else{
+
       let poruke = '';
       for (const key in odgovor.poruka.errors) {
         if (odgovor.poruka.errors.hasOwnProperty(key)) {
-          poruke += `${odgovor.poruka.errors[key]}` + '\n';
+          poruke += `${odgovor.poruka.errors[key]}` + '\n'
         }
       }
 
@@ -36,14 +39,15 @@ export default class DodajUsluga extends Component {
 
 
 
+
   handleSubmit(e) {
     e.preventDefault();
 
     const podaci = new FormData(e.target);
 
     
-
-    this.dodajUslugu({
+    {}
+    this.DodajUsluga({
       Naziv: podaci.get('Naziv'),
       destinacija: podaci.get('destinacija'),
       cijena: parseFloat(podaci.get('cijena')),
@@ -76,7 +80,7 @@ export default class DodajUsluga extends Component {
 
           <Form.Group className="mb-3" controlId="Cijena">
             <Form.Label>Cijena</Form.Label>
-            <Form.Control type="text" name="Cijena" placeholder="500" />
+            <Form.Control type="text" name="Cijena" placeholder="1000000" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -87,14 +91,14 @@ export default class DodajUsluga extends Component {
 
           <Form.Group className="mb-3" controlId="nacin_placanja">
             <Form.Label>nacin_placanja</Form.Label>
-            <Form.Control type="text" name="odaberite nacin plaćanja" placeholder="50" />
+            <Form.Control type="text" name="odaberite nacin plaćanja" placeholder="1 - 2" />
           </Form.Group>
 
 
 
           <Form.Group className="mb-3" controlId="broj_mjesta">
             <Form.Label>broj_mjesta</Form.Label>
-            <Form.Control type="text" name="broj_mjesta" placeholder="500" />
+            <Form.Control type="text" name="broj_mjesta" placeholder="50" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>

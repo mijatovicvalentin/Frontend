@@ -3,7 +3,6 @@ import { Button, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {FaEdit, FaTrash} from "react-icons/fa"
 import DjelatnikDataService from  "../../services/djelatnik.service";
-import { Modal } from 'react-bootstrap';
 
 
 
@@ -19,15 +18,14 @@ export default class Djelatnici extends Component{
 
     }
 
-    otvoriModal = () => this.setState({ prikaziModal: true });
-    zatvoriModal = () => this.setState({ prikaziModal: false });
+
 
 
     componentDidMount(){
-        this.dohvatiDjelatnici();
+        this.DohvatiDjelatnici();
     }
 
-    async dohvatiDjelatnici(){
+    async DohvatiDjelatnici(){
 
         await DjelatnikDataService.get()
         .then(response => {
@@ -41,10 +39,10 @@ export default class Djelatnici extends Component{
         });
     }
 
-    async obrisiDjelatnika(sifra){
+    async ObrisiDjelatnika(sifra){
         const odgovor = await DjelatnikDataService.delete(sifra);
         if(odgovor.ok){
-            this.dohvatiDjelatnici();
+            this.DohvatiDjelatnici();
         }else{
             alert(odgovor.poruka);
         }
@@ -90,7 +88,7 @@ export default class Djelatnici extends Component{
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiDjelatnika(Djelatnici.sifra)}>
+                            onClick={()=>this.ObrisiDjelatnika(Djelatnici.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>
@@ -100,18 +98,7 @@ export default class Djelatnici extends Component{
                 </tbody>
                </Table>
 
-               <Modal show={this.state.prikaziModal} onHide={this.zatvoriModal}>
-              <Modal.Header closeButton>
-                <Modal.Title>Greška prilikom brisanja</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Djelatnik ima vrstadjelatnika.</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.zatvoriModal}>
-                  Zatvori
-                </Button>
-              </Modal.Footer>
-            </Modal>
-
+         
 
             </Container>
 

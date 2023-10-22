@@ -19,10 +19,10 @@ export default class Usluge extends Component{
     }
 
     componentDidMount(){
-        this.dohvatiUsluge();
+        this.DohvatiUsluge();
     }
 
-    async dohvatiUsluge(){
+    async DohvatiUsluge(){
 
         await UslugaDataService.get()
         .then(response => {
@@ -36,10 +36,10 @@ export default class Usluge extends Component{
         });
     }
 
-    async obrisiUslugu(sifra){
+    async ObrisiUslugu(sifra){
         const odgovor = await UslugaDataService.delete(sifra);
         if(odgovor.ok){
-            this.dohvatiUsluge();
+            this.DohvatiUsluge();
         }else{
             alert(odgovor.poruka);
         }
@@ -94,7 +94,7 @@ export default class Usluge extends Component{
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiKorisnik(Usluga.sifra)}>
+                            onClick={()=>this.ObrisiUslugu(Usluga.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>

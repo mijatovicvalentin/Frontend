@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/usluge/:sifra" element={<PromjeniUslugu />} />
         <Route path='/vrstadjelatnika' element={<VrsteDjelatnika />} />
         <Route path="/vrstadjelatnika/dodaj" element={<DodajVrstaDjelatnika />} />
-        <Route path="/vrstadjelatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
+        <Route path="/vrstadjelvrstadjelatnikaatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
         <Route path="/djelatnici" element={<Djelatnici />} />
         <Route path="/djelatnici/dodaj" element={<DodajDjelatnik />} />
         <Route path="/djelatnici/:sifra" element={<PromjeniDjelatnik />} />

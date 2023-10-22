@@ -29,22 +29,26 @@ export default class DodajVozilo extends Component {
 
   }
 
-  componentDidMount() {
-    this.dohvatiDjelatnici();
 
-  }
 
-  async DodajVozilo(Vozilo) {
+  async   DodajVozilo(Vozilo) {
     const odgovor = await VoziloDataService.post(Vozilo);
     if(odgovor.ok){
-      // routing na smjerovi
       window.location.href='/vozila';
     }else{
-      // pokaži grešku
-      console.log(odgovor);
+
+      let poruke = '';
+      for (const key in odgovor.poruka.errors) {
+        if (odgovor.poruka.errors.hasOwnProperty(key)) {
+          poruke += `${odgovor.poruka.errors[key]}` + '\n';
+        }
+      }
+
+      alert(poruke);
     }
   }
-  async dohvatiDjelatnici() {
+
+  async DohvatiDjelatnici() {
 
     await DjelatnikDataService.get()
       .then(response => {
@@ -113,10 +117,10 @@ export default class DodajVozilo extends Component {
           <Form.Group className="mb-3" controlId="djelatnik">
             <Form.Label>djelatnik</Form.Label>
             <Form.Select onChange={e => {
-              this.setState({ sifraSmjer: e.target.value});
+              this.setState({ sifradjelatnik: e.target.value});
             }}>
             {Vozila && Vozila.map((Djelatnik,index) => (
-                  <option key={index} value={Djelatnik.sifra}>{Djelatnik.naziv}</option>
+                  <option key={index} value={Djelatnik.sifradjelatnik}>{Djelatnik.naziv}</option>
 
             ))}
             </Form.Select>
