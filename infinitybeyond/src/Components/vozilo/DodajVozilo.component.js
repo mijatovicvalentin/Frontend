@@ -20,7 +20,7 @@ export default class DodajVozilo extends Component {
     super(props);
     this.dodajVozilo = this.DodajVozilo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.DohvatiDjelatnici = this.DohvatiDjelatnici.bind(this);
 
     this.state = {
       djelatnici: [],
@@ -46,6 +46,10 @@ export default class DodajVozilo extends Component {
 
       alert(poruke);
     }
+  }
+
+  componentDidMount() {
+    this.DohvatiDjelatnici();
   }
 
   async DohvatiDjelatnici() {
@@ -88,6 +92,9 @@ export default class DodajVozilo extends Component {
 
 
   render() { 
+
+    const { djelatnici} = this.state;
+
     return (
     <Container>
         <Form onSubmit={this.handleSubmit}>
@@ -101,7 +108,7 @@ export default class DodajVozilo extends Component {
           
           <Form.Group className="mb-3" controlId="cijena">
             <Form.Label>cijena</Form.Label>
-            <Form.Control type="text" name="cijena" placeholder="500" />
+            <Form.Control type="text" name="cijena" placeholder="100000" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -113,29 +120,29 @@ export default class DodajVozilo extends Component {
             <Form.Control type="date" name="datum_proizvodnje" placeholder=""  />
           </Form.Group>
 
+         
 
           <Form.Group className="mb-3" controlId="djelatnik">
             <Form.Label>djelatnik</Form.Label>
             <Form.Select onChange={e => {
               this.setState({ sifradjelatnik: e.target.value});
             }}>
-            {Vozila && Vozila.map((Djelatnik,index) => (
-                  <option key={index} value={Djelatnik.sifradjelatnik}>{Djelatnik.naziv}</option>
+            {djelatnici && djelatnici.map((Djelatnik,index) => (
+                  <option key={index} value={Djelatnik.id}>{Djelatnik.ime} {Djelatnik.prezime}</option>
 
             ))}
             </Form.Select>
           </Form.Group>
 
-
+     
           <Form.Group className="mb-3" controlId="tezina">
             <Form.Label>tezina</Form.Label>
-            <Form.Control type="text" name="tezina kg" placeholder="2000000" />
+            <Form.Control type="text" name="tezina u kg" placeholder="5000000" />
             <Form.Text className="text-muted">
-             Ne smije biti negativan
+             Ne smije biti negativna
             </Form.Text>
           </Form.Group>
-
-
+          
 
           <Row>
             <Col>

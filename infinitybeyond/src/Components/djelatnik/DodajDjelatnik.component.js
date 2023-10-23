@@ -19,6 +19,8 @@ export default class DodajDjelatnik extends Component {
     super(props);
     this.DodajDjelatnik = this.DodajDjelatnik.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.Dohvativrstadjelatnika = this.Dohvativrstadjelatnika.bind(this);
+
 
 
     this.state = {
@@ -33,13 +35,16 @@ export default class DodajDjelatnik extends Component {
   async DodajDjelatnik(djelatnik) {
     const odgovor = await DjelatnikDataService.post(djelatnik);
     if(odgovor.ok){
-      // routing na smjerovi
       window.location.href='/djelatnici';
     }else{
-      // pokaži grešku
       console.log(odgovor);
     }
   }
+
+  componentDidMount() {
+    this.Dohvativrstadjelatnika();
+  }
+
   async Dohvativrstadjelatnika() {
 
    
@@ -50,7 +55,6 @@ export default class DodajDjelatnik extends Component {
           sifravrstadjelatnika: response.data[0].sifra
         });
 
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -122,8 +126,8 @@ export default class DodajDjelatnik extends Component {
             <Form.Select onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
-            {VrsteDjelatnika && VrsteDjelatnika.map((vrstadjelatnika,index) => (
-                  <option key={index} value={vrstadjelatnika.sifra}></option>
+            {VrsteDjelatnika && VrsteDjelatnika.map((Vrstadjelatnika,index) => (
+                  <option key={index} value={Vrstadjelatnika.sifra}>{Vrstadjelatnika.naziv} </option>
 
             ))}
             </Form.Select>
