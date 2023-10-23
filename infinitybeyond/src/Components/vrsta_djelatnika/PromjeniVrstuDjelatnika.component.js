@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
+import vrstedjelatnikaDataService from "../../services/vrsta_djelatnika.services";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,8 +15,8 @@ export default class PromjeniVrstuDjelatnika extends Component {
   constructor(props) {
     super(props);
 
-    this.vrstadjelatnika = this.dohvatiVrstuDjelatnika();
-    this.PromjeniVrstuDjelatnika = this.PromjeniVrstuDjelatnika.bind(this);
+    this.vrstadjelatnika = this.Dohvativrsta_djelatnika();
+    this.PromjeniVrstuDjelatnika = this.Promjenivrsta_djelatnika.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
     
@@ -28,7 +28,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
   }
 
 
-  async dohvativrstadjelatnika() {
+  async Dohvativrsta_djelatnika() {
     let href = window.location.href;
     let niz = href.split('/'); 
     await vrstedjelatnikaDataService.getBySifra(niz[niz.length-1])
@@ -42,7 +42,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
       });
   }
 
-  async promjeniVrstDjelatnika(vrstadjelatnika) {
+  async Promjenivrsta_djelatnika(vrstadjelatnika) {
     let href = window.location.href;
     let niz = href.split('/'); 
     const odgovor = await vrstedjelatnikaDataService.put(niz[niz.length-1],vrstadjelatnika);
@@ -61,7 +61,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
     const podaci = new FormData(e.target);
 
 
-    this.promjeniKorisnik({
+    this.Promjenivrsta_djelatnika({
         Naziv: podaci.get('naziv'),
     
     });
@@ -78,9 +78,9 @@ export default class PromjeniVrstuDjelatnika extends Component {
     <Container>
         <Form onSubmit={this.handleSubmit}>
 
-        <Form.Group className="mb-3" controlId="naziv">
-            <Form.Label>naziv</Form.Label>
-            <Form.Control type="text" name="naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv Vrstadjelatnika" maxLength={255} required/>
+        <Form.Group className="mb-3" controlId="Naziv">
+            <Form.Label>Naziv</Form.Label>
+            <Form.Control type="text" name="Naziv" defaultValue={vrstadjelatnika.Naziv} placeholder="Naziv Vrstadjelatnika" maxLength={255} required/>
           </Form.Group>
 
 

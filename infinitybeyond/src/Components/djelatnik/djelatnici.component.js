@@ -71,24 +71,24 @@ export default class Djelatnici extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                   { Djelatnici && Djelatnici.map((Djelatnici,index) => (
+                   { Djelatnici && Djelatnici.map((Dj,index) => (
 
                     <tr key={index}>
-                        <td>{Djelatnici.ime}</td>
-                        <td>{Djelatnici.prezime}</td>
-                        <td>{Djelatnici.oib }</td>
-                        <td>{Djelatnici.kontakt }</td>        
-                        <td>{Djelatnici.jedinstvenibroj}</td>
-                        <td>{Djelatnici.vrsta_djelatnika}</td>
+                        <td>{Dj.ime}</td>
+                        <td>{Dj.prezime}</td>
+                        <td>{Dj.oib }</td>
+                        <td>{Dj.kontakt }</td>        
+                        <td>{Dj.jedinstvenibroj}</td>
+                        <td>{Dj.vrsta_djelatnika}</td>
       
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/djelatnici/${Djelatnici.sifra}`}>
+                            to={`/djelatnici/${Dj.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.ObrisiDjelatnika(Djelatnici.sifra)}>
+                            onClick={()=>this.ObrisiDjelatnika(Dj.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>

@@ -23,11 +23,11 @@ export default class izbornik extends Component{
                   <NavDropdown title="Izbornik" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/korisnici">Korisnici</NavDropdown.Item>
                     <NavDropdown.Item href="/usluge">Usluge</NavDropdown.Item>
-                    <NavDropdown.Item href="/vrstadjelatnika">Vrste Djelatnika</NavDropdown.Item>
+                    <NavDropdown.Item href="/vrsta_djelatnika">Vrste Djelatnika</NavDropdown.Item>
                     <NavDropdown.Item href="/djelatnici">Djelatnici</NavDropdown.Item>
                     <NavDropdown.Item href="/vozila">Vozila</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item target="_blank" href="/swagger/index.html">
+                    <NavDropdown.Item target="_blank" href="/https://mijatovic1878-001-site1.htempurl.com/swagger/index.html">
                       Swagger
                     </NavDropdown.Item>
                   </NavDropdown>

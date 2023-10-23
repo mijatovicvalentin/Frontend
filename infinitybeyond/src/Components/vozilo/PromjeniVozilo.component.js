@@ -40,8 +40,6 @@ export default class PromjeniVozilo extends Component {
 
 
   async DohvatiVozilo() {
-    // ovo mora bolje
-    //console.log('Dohvaćam grupu');
     let href = window.location.href;
     let niz = href.split('/'); 
     await VoziloDataService.getBySifra(niz[niz.length-1])
@@ -49,11 +47,9 @@ export default class PromjeniVozilo extends Component {
         let g = response.data;
         g.datum_proizvodnje = moment.utc(g.datum_proizvodnje).format("yyyy-MM-DD");
         
-        //console.log(g.vrijemePocetka);
         this.setState({
           vozilo: g
         });
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -65,16 +61,13 @@ export default class PromjeniVozilo extends Component {
   async PromjeniVozilo(vozilo) {
     const odgovor = await VoziloDataService.post(vozilo);
     if(odgovor.ok){
-      // routing na smjerovi
       window.location.href='/vozila';
     }else{
-      // pokaži grešku
       console.log(odgovor);
     }
   }
 
   async DohvatiDjelatnik() {
-    // console.log('Dohvaćam vrstadjelatnika');
      await DjelatnikDataService.get()
        .then(response => {
          this.setState({
@@ -82,7 +75,6 @@ export default class PromjeniVozilo extends Component {
            sifraDjelatnik: response.data[0].sifra
          });
  
-        // console.log(response.data);
        })
        .catch(e => {
          console.log(e);

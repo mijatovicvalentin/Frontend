@@ -10,9 +10,9 @@ import PromjeniKorisnik from './Components/korisnik/PromjeniKorisnik.component';
 import Usluge from './Components/usluga/usluga.components';
 import DodajUsluga from './Components/usluga/DodajUsluga.component';
 import PromjeniUslugu from './Components/usluga/PromjeniUslugu.component';
-import VrsteDjelatnika from './Components/vrstadjelatnika/vrstadjelatnika.components';
-import DodajVrstaDjelatnika from './Components/vrstadjelatnika/DodajVrstuDdjelatnika.component';
-import PromjeniVrstuDjelatnika from './Components/vrstadjelatnika/PromjeniVrstuDjelatnika.component';
+import VrstaDjelatnika from './Components/vrsta_djelatnika/vrsta_djelatnika.component';
+import DodajVrstaDjelatnika from './Components/vrsta_djelatnika/DodajVrstuDdjelatnika.component';
+import PromjeniVrstuDjelatnika from './Components/vrsta_djelatnika/PromjeniVrstuDjelatnika.component';
 import Djelatnici from './Components/djelatnik/djelatnici.component';
 import DodajDjelatnik from './Components/djelatnik/DodajDjelatnik.component';
 import PromjeniDjelatnik from './Components/djelatnik/PromjeniDjelatnik.component';
@@ -35,9 +35,9 @@ export default function App() {
         <Route path='/usluge' element={<Usluge />} />
         <Route path="/usluge/dodaj" element={<DodajUsluga />} />
         <Route path="/usluge/:sifra" element={<PromjeniUslugu />} />
-        <Route path='/vrstadjelatnika' element={<VrsteDjelatnika />} />
-        <Route path="/vrstadjelatnika/dodaj" element={<DodajVrstaDjelatnika />} />
-        <Route path="/vrstadjelvrstadjelatnikaatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
+        <Route path='/vrsta_djelatnika' element={<VrstaDjelatnika />} />
+        <Route path="/vrsta_djelatnika/dodaj" element={<DodajVrstaDjelatnika />} />
+        <Route path="/vrsta_djelatnika/:sifra" element={<PromjeniVrstuDjelatnika />} />
         <Route path="/djelatnici" element={<Djelatnici />} />
         <Route path="/djelatnici/dodaj" element={<DodajDjelatnik />} />
         <Route path="/djelatnici/:sifra" element={<PromjeniDjelatnik />} />

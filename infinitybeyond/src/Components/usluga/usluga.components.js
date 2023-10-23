@@ -89,7 +89,7 @@ export default class Usluge extends Component{
                         <td>{Usluga.broj_mjesta}</td>
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/korisnici/${Usluga.sifra}`}>
+                            to={`/usluga/${Usluga.sifra}`}>
                                 <FaEdit />
                             </Link>
 

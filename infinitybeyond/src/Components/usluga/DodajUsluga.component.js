@@ -52,7 +52,7 @@ export default class DodajUsluga extends Component {
       destinacija: podaci.get('destinacija'),
       cijena: parseFloat(podaci.get('cijena')),
       broj_mjesta: (podaci.get('broj_mjesta')),
-      nacin_placanja: podaci.get('nacin_placanja'),
+      nacin_placanja: parseFloat(podaci.get('nacin_placanja')),
     
     });
     

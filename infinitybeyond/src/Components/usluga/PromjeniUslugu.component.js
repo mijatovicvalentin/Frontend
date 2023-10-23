@@ -15,7 +15,7 @@ export default class PromjeniUslugu extends Component {
     super(props);
 
    
-    this.usluga = this.dohvatiUsluga();
+    this.usl = this.dohvatiUsluga();
     this.promjeniUsluga = this.promjeniUsluga.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
@@ -34,9 +34,8 @@ export default class PromjeniUslugu extends Component {
     await UslugaDataService.getBySifra(niz[niz.length-1])
       .then(response => {
         this.setState({
-          usluga: response.data
+          usl: response.data
         });
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -78,7 +77,7 @@ export default class PromjeniUslugu extends Component {
 
   render() {
     
-   const { usluga} = this.state;
+   const { usl} = this.state;
 
 
     return (
@@ -88,20 +87,20 @@ export default class PromjeniUslugu extends Component {
 
         <Form.Group className="mb-3" controlId="Naziv">
             <Form.Label>Naziv</Form.Label>
-            <Form.Control type="text" name="Naziv" defaultValue={usluga.Naziv} placeholder="Naziv usluge" maxLength={255} required/>
+            <Form.Control type="text" name="Naziv" defaultValue={usl.Naziv} placeholder="Naziv usluge" maxLength={255} required/>
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="Destinacija">
             <Form.Label>Destinacija</Form.Label>
-            <Form.Control type="text" name="Destinacija" defaultValue={usluga.destinacija} placeholder="naziv destinacije" maxLength={255} required/>
+            <Form.Control type="text" name="Destinacija" defaultValue={usl.destinacija} placeholder="naziv destinacije" maxLength={255} required/>
           </Form.Group>
 
 
 
           <Form.Group className="mb-3" controlId="Cijena">
             <Form.Label>Cijena</Form.Label>
-            <Form.Control type="text" name="Cijena" defaultValue={usluga.cijena} placeholder="500" />
+            <Form.Control type="text" name="Cijena" defaultValue={usl.cijena} placeholder="500" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -112,14 +111,14 @@ export default class PromjeniUslugu extends Component {
 
           <Form.Group className="mb-3" controlId="nacin_placanja">
             <Form.Label>nacin_placanja</Form.Label>
-            <Form.Control type="text" name="odaberite nacin plaćanja" defaultValue={usluga.nacin_placanja} placeholder="50" />
+            <Form.Control type="text" name="odaberite nacin plaćanja" defaultValue={usl.nacin_placanja} placeholder="50" />
           </Form.Group>
 
 
 
           <Form.Group className="mb-3" controlId="broj_mjesta">
             <Form.Label>broj_mjesta</Form.Label>
-            <Form.Control type="text" name="broj_mjesta" defaultValue={usluga.broj_mjesta} placeholder="500" />
+            <Form.Control type="text" name="broj_mjesta" defaultValue={usl.broj_mjesta} placeholder="500" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>

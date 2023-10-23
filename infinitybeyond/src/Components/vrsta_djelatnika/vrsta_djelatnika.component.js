@@ -1,28 +1,20 @@
-
-import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
 import React, { Component } from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import vrstedjelatnikaDataService from "../../services/vrsta_djelatnika.services";
 import { Link } from "react-router-dom";
 import {FaEdit, FaTrash} from "react-icons/fa"
 
 
-
-
-
-
-export default class VrsteDjelatnika extends Component{
+export default class VrstaDjelatnika extends Component{
 
     constructor(props){
         super(props);
 
         this.state = {
-            VrstaD: []
+            vd: []
         };
 
     }
-
-
-
 
     componentDidMount(){
         this.dohvativrstadjelatnika();
@@ -33,7 +25,7 @@ export default class VrsteDjelatnika extends Component{
         await vrstedjelatnikaDataService.get()
         .then(response => {
             this.setState({
-                VrstaD: response.data
+                vd: response.data
             });
             console.log(response.data);
         })
@@ -54,43 +46,45 @@ export default class VrsteDjelatnika extends Component{
 
     render(){
 
-        const { VrstaDje } = this.state;
+        const { vd } = this.state;
 
         return (
             <Container>
-               <a href="/vrstadjelatnika/dodaj" className="btn btn-success gumb">
+               <a href="/vrsta_djelatnika/dodaj" className="btn btn-success gumb">
                 Dodaj novu Vrstu Djelatnika
                </a>
                 
                <Table striped bordered hover responsive>
                 <thead>
                     <tr>
-                    <th>naziv</th>
+                        <th>naziv</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
-                   { VrstaDje && VrstaDje.map((v,index) => (
+                   { vd && vd.map((vdd,index) => (
 
                     <tr key={index}>
-                        <td>{v.naziv}</td>
+                        <td>{vdd.naziv}</td>
+                        
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/vrstadjelatnika/${v.sifra}`}>
+                            to={`/vrsta_djelatnika/${vdd.sifra}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisivrstadjelatnika(v.sifra)}>
+                            onClick={()=>this.obrisivrstadjelatnika(vdd.sifra)}>
                                 <FaTrash />
                             </Button>
                         </td>
                     </tr>
 
+
                    ))}
                 </tbody>
                </Table>
 
-     
 
 
             </Container>

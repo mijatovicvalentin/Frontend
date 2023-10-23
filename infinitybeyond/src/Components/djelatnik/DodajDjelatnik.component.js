@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import DjelatnikDataService from "../../services/djelatnik.service";
-import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
+import vrstedjelatnikaDataService from "../../services/vrsta_djelatnika.services";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
-import VrsteDjelatnika from "../vrstadjelatnika/vrstadjelatnika.components";
 
 
 
@@ -24,7 +23,7 @@ export default class DodajDjelatnik extends Component {
 
 
     this.state = {
-      vrstedjelatnika: [],
+      vd: [],
       sifravrstadjelatnika:0
     };
 
@@ -51,7 +50,7 @@ export default class DodajDjelatnik extends Component {
     await vrstedjelatnikaDataService.get()
       .then(response => {
         this.setState({
-          vrstadjelatnika: response.data,
+          vd: response.data,
           sifravrstadjelatnika: response.data[0].sifra
         });
 
@@ -84,6 +83,9 @@ export default class DodajDjelatnik extends Component {
 
 
   render() { 
+
+    const { vd} = this.state;
+
     return (
     <Container>
         <Form onSubmit={this.handleSubmit}>
@@ -126,8 +128,8 @@ export default class DodajDjelatnik extends Component {
             <Form.Select onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
-            {VrsteDjelatnika && VrsteDjelatnika.map((Vrstadjelatnika,index) => (
-                  <option key={index} value={Vrstadjelatnika.sifra}>{Vrstadjelatnika.naziv} </option>
+            {vd && vd.map((vd,index) => (
+                  <option key={index} value={vd.sifra}>{vd.naziv} </option>
 
             ))}
             </Form.Select>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import vrstedjelatnikaDataService from "../../services/vrstadjelatnika.service";
+import vrstedjelatnikaDataService from "../../services/vrsta_djelatnika.services";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -18,10 +18,10 @@ export default class DodajVrstaDjelatnika extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async DodajVrstaDjelatnika(vrstadjelatnika) {
-    const odgovor = await vrstedjelatnikaDataService.post(vrstadjelatnika);
+  async DodajVrstaDjelatnika(Vrstadjelatnika) {
+    const odgovor = await vrstedjelatnikaDataService.post(Vrstadjelatnika);
     if(odgovor.ok){
-      window.location.href='/Vrstadjelatnika';
+      window.location.href='/vrsta_djelatnika';
     }else{
 
       let poruke = '';
@@ -42,8 +42,8 @@ export default class DodajVrstaDjelatnika extends Component {
     const podaci = new FormData(e.target);
 
     this.DodajVrstaDjelatnika({
-      Naziv: podaci.get('naziv'),
-    
+      naziv: podaci.get('naziv'),
+      
     });
     
   }
@@ -55,16 +55,15 @@ export default class DodajVrstaDjelatnika extends Component {
         <Form onSubmit={this.handleSubmit}>
 
 
-        <Form.Group className="mb-3" controlId="naziv">
+          <Form.Group className="mb-3" controlId="naziv">
             <Form.Label>naziv</Form.Label>
-            <Form.Control type="text" name="Naziv" placeholder="Naziv Vrste djelatnika" maxLength={255} required/>
+            <Form.Control type="text" name="naziv" placeholder="" maxLength={255} required/>
           </Form.Group>
-
 
 
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/Vrstadjelatnika`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/vrsta_djelatnika`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">

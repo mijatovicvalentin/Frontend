@@ -69,10 +69,11 @@ export default class Korisnici extends Component{
                     <tr key={index}>
                         <td>{korisnik.ime}</td>
                         <td>{korisnik.prezime}</td>
-                        <td>{korisnik.email}</td>
                         <td>{korisnik.oib}</td>
+                        <td>{korisnik.email}</td>
+                       
                         <td>
-                            <Link className="btn btn-primary gumb"
+                        <Link className="btn btn-primary gumb"
                             to={`/korisnici/${korisnik.sifra}`}>
                                 <FaEdit />
                             </Link>
@@ -83,6 +84,7 @@ export default class Korisnici extends Component{
                             </Button>
                         </td>
                     </tr>
+
 
                    ))}
                 </tbody>

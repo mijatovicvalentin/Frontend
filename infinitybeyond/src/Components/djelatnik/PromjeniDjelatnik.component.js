@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import DjelatnikDataService from  "../../services/djelatnik.service";
-import vrstedjelatnikaService from "../../services/vrstadjelatnika.service";
+import vrstedjelatnikaService from "../../services/vrsta_djelatnika.services";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
-import VrsteDjelatnika from "../vrstadjelatnika/vrstadjelatnika.components";
+import VrstaDjelatnika from "../vrsta_djelatnika/vrsta_djelatnika.component";
 
 
 
@@ -29,8 +29,8 @@ export default class PromjeniDjelatnik extends Component {
 
   
     this.state = {
-      djelatnik: {},
-      vrstadjelatnika: [],
+      d: {},
+      vd: [],
       sifravrstadjelatnika:0,
     };
 
@@ -44,7 +44,7 @@ export default class PromjeniDjelatnik extends Component {
     await DjelatnikDataService.getBySifra(niz[niz.length-1])
       .then(response => {
         this.setState({
-          djelatnik: response.data
+          d: response.data
         });
        // console.log(response.data);
       })
@@ -71,7 +71,7 @@ export default class PromjeniDjelatnik extends Component {
      await vrstedjelatnikaService.get()
        .then(response => {
          this.setState({
-           vrstadjelatnika: response.data,
+          vd: response.data,
            sifravrstadjelatnika: response.data[0].sifra
          });
  
@@ -105,8 +105,8 @@ export default class PromjeniDjelatnik extends Component {
 
   render() {
     
-   const { vrstadjelatnika} = this.state;
-   const { djelatnik} = this.state;
+   const { vd} = this.state;
+   const { d} = this.state;
 
 
 
@@ -117,32 +117,32 @@ export default class PromjeniDjelatnik extends Component {
 
         <Form.Group className="mb-3" controlId="ime">
             <Form.Label>ime</Form.Label>
-            <Form.Control type="text" name="Ime" placeholder="ime djelatnika" defaultValue={djelatnik.ime} maxLength={255} required/>
+            <Form.Control type="text" name="Ime" placeholder="ime djelatnika" defaultValue={d.ime} maxLength={255} required/>
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="prezime">
             <Form.Label>prezime</Form.Label>
-            <Form.Control type="text" name="prezime" placeholder="prezime djelatnika" defaultValue={djelatnik.prezime} maxLength={255} required/>
+            <Form.Control type="text" name="prezime" placeholder="prezime djelatnika" defaultValue={d.prezime} maxLength={255} required/>
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="oib">
             <Form.Label>oib</Form.Label>
-            <Form.Control type="text" name="oib" placeholder="" defaultValue={djelatnik.oib} />
+            <Form.Control type="text" name="oib" placeholder="" defaultValue={d.oib} />
           </Form.Group>
 
 
 
           <Form.Group className="mb-3" controlId="kontakt">
             <Form.Label>kontakt</Form.Label>
-            <Form.Control type="text" name="kontakt" placeholder="kontakt" defaultValue={djelatnik.kontakt} maxLength={255} required/>
+            <Form.Control type="text" name="kontakt" placeholder="kontakt" defaultValue={d.kontakt} maxLength={255} required/>
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="jedinstvenibroj">
             <Form.Label>jedinstvenibroj</Form.Label>
-            <Form.Control type="text" name="jedinstvenibroj" placeholder="500" defaultValue={djelatnik.jedinstvenibroj} />
+            <Form.Control type="text" name="jedinstvenibroj" placeholder="500" defaultValue={d.jedinstvenibroj} />
             <Form.Text className="text-muted">
              Ne smije biti negativan
             </Form.Text>
@@ -150,10 +150,10 @@ export default class PromjeniDjelatnik extends Component {
 
           <Form.Group className="mb-3" controlId="vrstadjelatnika">
             <Form.Label>vrstadjelatnika</Form.Label>
-            <Form.Select defaultValue={djelatnik.vrstadjelatnika} onChange={e => {
+            <Form.Select defaultValue={d.vrstadjelatnika} onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
-            {VrsteDjelatnika && VrsteDjelatnika.map((vrstadjelatnika,index) => (
+            {vd && vd.map((vrstadjelatnika,index) => (
                   <option key={index} value={vrstadjelatnika.sifra}></option>
 
             ))}
@@ -164,7 +164,7 @@ export default class PromjeniDjelatnik extends Component {
          
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/usluge`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/djelatnici`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">
