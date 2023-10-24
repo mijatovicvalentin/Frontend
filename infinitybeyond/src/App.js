@@ -7,7 +7,7 @@ import Nadzornaploca from './Components/nadzornaploca.component';
 import Korisnici from './Components/korisnik/korisnici.component';
 import DodajKorisnik from './Components/korisnik/DodajKorisnik.components';
 import PromjeniKorisnik from './Components/korisnik/PromjeniKorisnik.component';
-import Usluge from './Components/usluga/usluga.components';
+import Usluge from './Components/usluga/usluge.components';
 import DodajUsluga from './Components/usluga/DodajUsluga.component';
 import PromjeniUslugu from './Components/usluga/PromjeniUslugu.component';
 import VrstaDjelatnika from './Components/vrsta_djelatnika/vrsta_djelatnika.component';

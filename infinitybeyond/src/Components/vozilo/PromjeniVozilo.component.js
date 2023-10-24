@@ -8,13 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 import moment from 'moment';
-import Djelatnici from "../djelatnik/djelatnici.component";
 
 
 
 
 
-export default class PromjeniVozilo extends Component {
+export default class PromjeniDjelatnik extends Component {
 
   constructor(props) {
     super(props);
@@ -22,66 +21,68 @@ export default class PromjeniVozilo extends Component {
    
        
 
-    this.vozilo = this.DohvatiVozilo();
-    this.PromjeniVozilo = this.PromjeniVozilo(this);
+    this.vozilo = this.DohvatiloVozilo();
+    this.promjeniVozilo = this.PromjeniVozilo(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.djelatnik = this.DohvatiDjelatnik();
+    this.djelatnik = this.Dohvatidjelatnik();
     
 
   
     this.state = {
-      vozilo: {},
-      djelatnik: [],
-      sifraDjelatnik:0,
+      voz: {},
+      dje: [],
+      sifraDje:0,
     };
 
   }
 
 
 
-  async DohvatiVozilo() {
+  async DohvatiloVozilo() {
     let href = window.location.href;
     let niz = href.split('/'); 
     await VoziloDataService.getBySifra(niz[niz.length-1])
       .then(response => {
-        let g = response.data;
-        g.datum_proizvodnje = moment.utc(g.datum_proizvodnje).format("yyyy-MM-DD");
-        
         this.setState({
-          vozilo: g
+          voz: response.data
         });
+       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
-  }
+    
    
-  
+  }
 
-  async PromjeniVozilo(vozilo) {
-    const odgovor = await VoziloDataService.post(vozilo);
+  async PromjeniVozilo(vozila) {
+    const odgovor = await VoziloDataService.post(vozila);
     if(odgovor.ok){
+      // routing na smjerovi
       window.location.href='/vozila';
     }else{
+      // pokaži grešku
       console.log(odgovor);
     }
   }
 
-  async DohvatiDjelatnik() {
+  async Dohvatidjelatnik() {
+    // console.log('Dohvaćam vrstadjelatnika');
      await DjelatnikDataService.get()
        .then(response => {
          this.setState({
-           djelatnik: response.data,
-           sifraDjelatnik: response.data[0].sifra
+          dje: response.data,
+          sifraDje: response.data[0].sifra
          });
  
+        // console.log(response.data);
        })
        .catch(e => {
          console.log(e);
        });
    }
 
-  handleSubmit(e) {
+   handleSubmit(e) {
     e.preventDefault();
     const podaci = new FormData(e.target);
     console.log(podaci.get('naziv'));
@@ -94,18 +95,17 @@ export default class PromjeniVozilo extends Component {
 
     this.DodajVozilo({
       naziv: podaci.get('naziv'),
-      cijena: parseFloat(podaci.get('prezime')),
+      cijena: parseFloat(podaci.get('cijena')),
       datum_proizvodnje: datum,
       djelatnik: podaci.get('djelatnik'),
       tezina: podaci.get('tezina'),
-      sifraDjelatnik: this.state.sifraDjelatnik
+      sifraDje: this.state.sifraDje
     });
   }
-
-
   render() {
     
-   const { vozilo} = this.state;
+   const { voz} = this.state;
+   const { dje} = this.state;
 
 
 
@@ -115,14 +115,14 @@ export default class PromjeniVozilo extends Component {
 
         <Form.Group className="mb-3" controlId="naziv">
             <Form.Label>naziv</Form.Label>
-            <Form.Control type="text" name="Ime" placeholder="naziv" defaultValue={vozilo.naziv} maxLength={255} required/>
+            <Form.Control type="text" name="Ime" placeholder="naziv" defaultValue={voz.naziv} maxLength={255} required/>
           </Form.Group>
 
 
           
           <Form.Group className="mb-3" controlId="cijena">
             <Form.Label>cijena</Form.Label>
-            <Form.Control type="text" name="cijena" placeholder="500" defaultValue={vozilo.cijena} />
+            <Form.Control type="text" name="cijena" placeholder="500" defaultValue={voz.cijena} />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -131,17 +131,17 @@ export default class PromjeniVozilo extends Component {
          
           <Form.Group className="mb-3" controlId="datum_proizvodnje">
             <Form.Label>datum_proizvodnje</Form.Label>
-            <Form.Control type="date" name="datum_proizvodnje" placeholder="" defaultValue={vozilo.datum_proizvodnje} />
+            <Form.Control type="date" name="datum_proizvodnje" placeholder="" defaultValue={voz.datum_proizvodnje} />
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="djelatnik">
             <Form.Label>djelatnik</Form.Label>
-            <Form.Select defaultValue={vozilo.sifraDjelatnik}  onChange={e => {
-              this.setState({ sifraSmjer: e.target.value});
+            <Form.Select defaultValue={voz.sifraDje}  onChange={e => {
+              this.setState({ sifraDje: e.target.value});
             }}>
-            {Djelatnici && Djelatnici.map((Djelatnik,index) => (
-                  <option key={index} value={Djelatnik.sifra}>{Djelatnik.naziv}</option>
+            {dje && dje.map((djelatnik,index) => (
+                  <option key={index} value={djelatnik.sifra}>{djelatnik.naziv}</option>
 
             ))}
             </Form.Select>
@@ -150,7 +150,7 @@ export default class PromjeniVozilo extends Component {
 
           <Form.Group className="mb-3" controlId="tezina">
             <Form.Label>tezina</Form.Label>
-            <Form.Control type="text" name="tezina kg" placeholder="2000000" defaultValue={vozilo.tezina}  />
+            <Form.Control type="text" name="tezina kg" placeholder="2000000" defaultValue={voz.tezina}  />
             <Form.Text className="text-muted">
              Ne smije biti negativan
             </Form.Text>
@@ -159,7 +159,7 @@ export default class PromjeniVozilo extends Component {
          
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/vozila`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/vozilo`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">

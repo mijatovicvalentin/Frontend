@@ -9,26 +9,27 @@ import { Link } from "react-router-dom";
 
 
 
+
 export default class PromjeniUslugu extends Component {
 
   constructor(props) {
     super(props);
 
-   
-    this.usl = this.dohvatiUsluga();
+    this.Usluga = this.dohvatiUsluga();
     this.promjeniUsluga = this.promjeniUsluga.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
+    
+
 
     this.state = {
-      usluga: {}
+      usl: {}
     };
-
   }
 
 
-
   async dohvatiUsluga() {
+    // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
     await UslugaDataService.getBySifra(niz[niz.length-1])
@@ -36,21 +37,22 @@ export default class PromjeniUslugu extends Component {
         this.setState({
           usl: response.data
         });
+       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
-    
-   
   }
 
-  async promjeniUsluga(usluga) {
+  async promjeniUsluga(Usluga) {
+    // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
-    const odgovor = await UslugaDataService.put(niz[niz.length-1],usluga);
+    const odgovor = await UslugaDataService.put(niz[niz.length-1],Usluga);
     if(odgovor.ok){
       window.location.href='/usluge';
     }else{
+      // pokaži grešku
       console.log(odgovor);
     }
   }
@@ -61,14 +63,15 @@ export default class PromjeniUslugu extends Component {
     e.preventDefault();
 
     const podaci = new FormData(e.target);
-  
 
-    this.promjeniUsluga({
-        Naziv: podaci.get('Naziv'),
+    
+    {}
+    this.DodajUsluga({
+      Naziv: podaci.get('Naziv'),
       destinacija: podaci.get('destinacija'),
       cijena: parseFloat(podaci.get('cijena')),
       broj_mjesta: (podaci.get('broj_mjesta')),
-      nacin_placanja: podaci.get('nacin_placanja'),
+      nacin_placanja: parseFloat(podaci.get('nacin_placanja')),
     
     });
     
@@ -77,8 +80,7 @@ export default class PromjeniUslugu extends Component {
 
   render() {
     
-   const { usl} = this.state;
-
+    const { usl} = this.state;
 
     return (
     <Container>
@@ -100,7 +102,7 @@ export default class PromjeniUslugu extends Component {
 
           <Form.Group className="mb-3" controlId="Cijena">
             <Form.Label>Cijena</Form.Label>
-            <Form.Control type="text" name="Cijena" defaultValue={usl.cijena} placeholder="500" />
+            <Form.Control type="text" name="Cijena" defaultValue={usl.cijena} placeholder="1000000" />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -111,7 +113,7 @@ export default class PromjeniUslugu extends Component {
 
           <Form.Group className="mb-3" controlId="nacin_placanja">
             <Form.Label>nacin_placanja</Form.Label>
-            <Form.Control type="text" name="odaberite nacin plaćanja" defaultValue={usl.nacin_placanja} placeholder="50" />
+            <Form.Control type="text" name="odaberite nacin plaćanja" defaultValue={usl.nacin_placanja} placeholder="1 ili 2" />
           </Form.Group>
 
 
@@ -123,8 +125,6 @@ export default class PromjeniUslugu extends Component {
              Ne smije biti negativna
             </Form.Text>
           </Form.Group>
-          
-        
          
           <Row>
             <Col>

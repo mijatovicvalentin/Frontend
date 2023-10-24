@@ -16,7 +16,7 @@ export default class DodajDjelatnik extends Component {
 
   constructor(props) {
     super(props);
-    this.DodajDjelatnik = this.DodajDjelatnik.bind(this);
+    this.dodajDjelatnik = this.DodajDjelatnik.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.Dohvativrstadjelatnika = this.Dohvativrstadjelatnika.bind(this);
 
@@ -31,8 +31,8 @@ export default class DodajDjelatnik extends Component {
 
   
 
-  async DodajDjelatnik(djelatnik) {
-    const odgovor = await DjelatnikDataService.post(djelatnik);
+  async DodajDjelatnik(dje) {
+    const odgovor = await DjelatnikDataService.post(dje);
     if(odgovor.ok){
       window.location.href='/djelatnici';
     }else{

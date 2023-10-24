@@ -96,7 +96,7 @@ export default class Vozila extends Component{
       
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/djelatnici/${v.sifra}`}>
+                            to={`/vozila/${v.sifra}`}>
                                 <FaEdit />
                             </Link>
 

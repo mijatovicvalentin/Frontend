@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 import moment from 'moment';
-import Vozila from "./vozila.component";
 
 
 
@@ -146,7 +145,7 @@ export default class DodajVozilo extends Component {
 
           <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/korisnici`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/vozila`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">

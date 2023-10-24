@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
-import VrstaDjelatnika from "../vrsta_djelatnika/vrsta_djelatnika.component";
 
 
 
@@ -25,7 +24,6 @@ export default class PromjeniDjelatnik extends Component {
     this.promjeniDjelatnik = this.PromjeniDjelatnik(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.vrstadjelatnika = this.Dohvativrstadjelatnika();
-    
 
   
     this.state = {

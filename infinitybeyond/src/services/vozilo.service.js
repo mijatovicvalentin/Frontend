@@ -48,7 +48,7 @@ class VoziloDataService {
 
      async obrisiVozilo(vozilo, djelatnik){
     
-      const odgovor = await http.delete('/vozilo/djelatnik/' + vozilo + '/' + djelatnik)
+      const odgovor = await http.delete('/djelatnik/obrisivrstadjelatnika/' + vozilo + '/' + djelatnik)
          .then(response => {
            return {ok:true, poruka: 'Obrisao uspješno'};
          })
@@ -60,9 +60,9 @@ class VoziloDataService {
          return odgovor;
        }
 
-       async dodajVozilo(vozilo, djelatnik){
+       async DodajVozilo(vozila, djelatnik){
     
-        const odgovor = await http.post('/vozilo/djelatnik/' + vozilo + '/' + djelatnik)
+        const odgovor = await http.post('/djelatnik/dodajvrstadjelatnika/' + vozila + '/' + djelatnik)
            .then(response => {
              return {ok:true, poruka: 'Dodao uspješno'};
            })
@@ -72,8 +72,8 @@ class VoziloDataService {
            });
      
            return odgovor;
-        }
+         }
 
-    }
-    
-    export default new VoziloDataService();
+}
+
+export default new VoziloDataService();
