@@ -31,7 +31,7 @@ export default class PromjeniVrstuDjelatnika extends Component {
   async Dohvativrsta_djelatnika() {
     let href = window.location.href;
     let niz = href.split('/'); 
-    await vrstedjelatnikaDataService.getBySifra(niz[niz.length-1])
+    await vrstedjelatnikaDataService.getByid(niz[niz.length-1])
       .then(response => {
         this.setState({
           vrstadjelatnika: response.data

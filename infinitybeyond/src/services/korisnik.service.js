@@ -5,7 +5,7 @@ class KorisnikDataService {
     return await http.get('/korisnik');
   }
 
-  async getBysifra(id) {
+  async getByid(id) {
     return await http.get('/korisnik/' + id);
   }
 

@@ -7,7 +7,7 @@ class UslugaDataService{
         return await http.get('/Usluga');
     }
 
-    async getBySifra(id) {
+    async getByid(id) {
         return await http.get('/usluga/' + id);
       }
 

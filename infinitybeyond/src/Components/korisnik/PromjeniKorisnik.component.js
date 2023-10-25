@@ -32,7 +32,7 @@ export default class PromjeniKorisnik extends Component {
     // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
-    await KorisnikDataService.getBySifra(niz[niz.length-1])
+    await KorisnikDataService.getByid(niz[niz.length-1])
       .then(response => {
         this.setState({
           korisnik: response.data

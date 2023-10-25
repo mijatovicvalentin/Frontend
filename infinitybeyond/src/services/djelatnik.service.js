@@ -5,7 +5,7 @@ class DjelatnikDataService {
     return http.get("/djelatnik");
   }
 
-  async getBySifra(id) {
+  async getByid(id) {
     return await http.get('/djelatnik/' + id);
   }
 

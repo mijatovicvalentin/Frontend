@@ -41,7 +41,7 @@ export default class PromjeniGrupa extends Component {
     //console.log('Dohvaćam grupu');
     let href = window.location.href;
     let niz = href.split('/'); 
-    await VoziloDataService.getBySifra(niz[niz.length-1])
+    await VoziloDataService.getByid(niz[niz.length-1])
       .then(response => {
         let g = response.data;
         

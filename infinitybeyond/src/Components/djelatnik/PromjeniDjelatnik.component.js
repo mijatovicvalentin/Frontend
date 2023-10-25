@@ -39,7 +39,7 @@ export default class PromjeniDjelatnik extends Component {
   async DohvatiDjelatnik() {
     let href = window.location.href;
     let niz = href.split('/'); 
-    await DjelatnikDataService.getBySifra(niz[niz.length-1])
+    await DjelatnikDataService.getByid(niz[niz.length-1])
       .then(response => {
         this.setState({
           d: response.data

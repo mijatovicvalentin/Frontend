@@ -32,7 +32,7 @@ export default class PromjeniUslugu extends Component {
     // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
-    await UslugaDataService.getBySifra(niz[niz.length-1])
+    await UslugaDataService.getByid(niz[niz.length-1])
       .then(response => {
         this.setState({
           usl: response.data

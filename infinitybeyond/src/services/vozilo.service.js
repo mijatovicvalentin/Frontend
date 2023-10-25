@@ -5,7 +5,7 @@ class VoziloDataService {
     return http.get("/vozilo");
   }
 
-  async getBySifra(id) {
+  async getByid(id) {
     return await http.get('/vozilo/' + id);
   }
 

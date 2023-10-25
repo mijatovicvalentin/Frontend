@@ -7,7 +7,7 @@ class vrstedjelatnikaDataService{
         return await http.get('/vrsta_djelatnika');
     }
 
-    async getBySifra(id) {
+    async getByid(id) {
         return await http.get('/vrsta_djelatnika/' + id);
       }
 
