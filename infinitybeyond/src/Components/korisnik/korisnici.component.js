@@ -12,6 +12,7 @@ export default class Korisnici extends Component{
 
         this.state = {
             Korisnici: []
+            
         };
 
     }
@@ -34,14 +35,11 @@ export default class Korisnici extends Component{
         });
     }
 
-    async obrisiKorisnik(sifra){
-        const odgovor = await KorisnikDataService.delete(sifra);
-        if(odgovor.ok){
-            this.dohvatiKorisnici();
-        }else{
-            alert(odgovor.poruka);
+    async obrisiKorisnika(id){
+        const odgovor = await KorisnikDataService.delete(id);
+        if(odgovor.ok){  window.location.href='/korisnici'; }
+        else {	 alert(odgovor.poruka); }
         }
-    }
 
 
     render(){
@@ -64,22 +62,22 @@ export default class Korisnici extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                   { Korisnici && Korisnici.map((korisnik,index) => (
+                   { Korisnici && Korisnici.map((Korisnik,index) => (
 
                     <tr key={index}>
-                        <td>{korisnik.ime}</td>
-                        <td>{korisnik.prezime}</td>
-                        <td>{korisnik.oib}</td>
-                        <td>{korisnik.email}</td>
+                        <td>{Korisnik.ime}</td>
+                        <td>{Korisnik.prezime}</td>
+                        <td>{Korisnik.oib}</td>
+                        <td>{Korisnik.email}</td>
                        
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/korisnici/${korisnik.sifra}`}>
+                            to={`/korisnici/${Korisnik.id}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisiKorisnik(korisnik.sifra)}>
+                            onClick={()=>this.obrisiKorisnika(Korisnik.id)}>
                                 <FaTrash />
                             </Button>
                         </td>

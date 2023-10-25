@@ -5,20 +5,17 @@ class VoziloDataService {
     return http.get("/vozilo");
   }
 
-  async getBySifra(sifra) {
-   // console.log(sifra);
-    return await http.get('/vozilo/' + sifra);
+  async getBySifra(id) {
+    return await http.get('/vozilo/' + id);
   }
 
-  async getPolaznici(sifra) {
-    // console.log(sifra);
-     return await http.get('/vozilo/' + sifra + '/djelatnik');
+  async getdjelatnik(id) {
+     return await http.get('/vozilo/' + id + '/djelatnik');
    }
  
 
 
   async post(vozilo){
-    //console.log(smjer);
     const odgovor = await http.post('/vozilo',vozilo)
        .then(response => {
          return {ok:true, poruka: 'Unio vozilo'}; // return u odgovor
@@ -32,9 +29,9 @@ class VoziloDataService {
 }
 
 
-  async delete(sifra){
+  async delete(id){
     
-    const odgovor = await http.delete('/vozilo/' + sifra)
+    const odgovor = await http.delete('/vozilo/' + id)
        .then(response => {
          return {ok:true, poruka: 'Obrisao uspješno'};
        })
@@ -46,9 +43,9 @@ class VoziloDataService {
        return odgovor;
      }
 
-     async obrisiVozilo(vozilo, djelatnik){
+     async obrisidjelatnik(vozilo, djelatnik){
     
-      const odgovor = await http.delete('/djelatnik/obrisivrstadjelatnika/' + vozilo + '/' + djelatnik)
+      const odgovor = await http.delete('/vozilo/djelatnik/' + vozilo + '/' + djelatnik)
          .then(response => {
            return {ok:true, poruka: 'Obrisao uspješno'};
          })
@@ -60,9 +57,9 @@ class VoziloDataService {
          return odgovor;
        }
 
-       async DodajVozilo(vozila, djelatnik){
+       async obrisidjelatnik(vozilo, djelatnik){
     
-        const odgovor = await http.post('/djelatnik/dodajvrstadjelatnika/' + vozila + '/' + djelatnik)
+        const odgovor = await http.post('/vozilo/djelatnik/' + vozilo + '/' + djelatnik)
            .then(response => {
              return {ok:true, poruka: 'Dodao uspješno'};
            })

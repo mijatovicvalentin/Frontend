@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import VoziloDataService from  "../../services/vozilo.service";
+import VoziloDataService from "../../services/vozilo.service";
 import DjelatnikDataService from "../../services/djelatnik.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -11,54 +11,54 @@ import moment from 'moment';
 
 
 
-
-
-export default class PromjeniDjelatnik extends Component {
+export default class PromjeniGrupa extends Component {
 
   constructor(props) {
     super(props);
 
-   
-       
-
-    this.vozilo = this.DohvatiloVozilo();
-    this.promjeniVozilo = this.PromjeniVozilo(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.djelatnik = this.Dohvatidjelatnik();
     
 
-  
-    this.state = {
-      voz: {},
-      dje: [],
-      sifraDje:0,
-    };
+    this.vozilo = this.dohvatiVozilo();
+    this.promjeniVozilo = this.promjeniVozilo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.djelatnici = this.dohvatiDjelatnici();
+    this.dodajDjelatnika = this.dodajDjelatnika.bind(this);
 
+
+
+    this.state = {
+      vozilo: {},
+      djelatnici: [],
+      sifradjelatnici:0,
+    };
   }
 
 
 
-  async DohvatiloVozilo() {
+
+  async dohvatiVozilo() {
+    // ovo mora bolje
+    //console.log('Dohvaćam grupu');
     let href = window.location.href;
     let niz = href.split('/'); 
     await VoziloDataService.getBySifra(niz[niz.length-1])
       .then(response => {
+        let g = response.data;
+        
         this.setState({
-          voz: response.data
+          vozilo: g
         });
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
-    
-   
   }
 
-  async PromjeniVozilo(vozila) {
-    const odgovor = await VoziloDataService.post(vozila);
+  
+
+  async promjeniVozilo(vozilo) {
+    const odgovor = await VoziloDataService.post(vozilo);
     if(odgovor.ok){
-      // routing na smjerovi
       window.location.href='/vozila';
     }else{
       // pokaži grešku
@@ -66,13 +66,12 @@ export default class PromjeniDjelatnik extends Component {
     }
   }
 
-  async Dohvatidjelatnik() {
-    // console.log('Dohvaćam vrstadjelatnika');
+  async dohvatiDjelatnici() {
      await DjelatnikDataService.get()
        .then(response => {
          this.setState({
-          dje: response.data,
-          sifraDje: response.data[0].sifra
+           djelatnici: response.data,
+           sifradjelatnici: response.data[0].id
          });
  
         // console.log(response.data);
@@ -82,7 +81,16 @@ export default class PromjeniDjelatnik extends Component {
        });
    }
 
-   handleSubmit(e) {
+   async dodajDjelatnika(vozilo, djelatnici){
+    const odgovor = await VoziloDataService.dodajDjelatnika(vozilo, djelatnici);
+    if(odgovor.ok){
+     this.dohvatiDjelatnici();
+    }else{
+    }
+   }
+   
+   
+  handleSubmit(e) {
     e.preventDefault();
     const podaci = new FormData(e.target);
     console.log(podaci.get('naziv'));
@@ -93,19 +101,23 @@ export default class PromjeniDjelatnik extends Component {
     let datum = moment.utc(podaci.get('datum_proizvodnje') + ' ' + podaci.get('vrijeme'));
     console.log(datum);
 
-    this.DodajVozilo({
+    this.promjeniGrupa({
       naziv: podaci.get('naziv'),
-      cijena: parseFloat(podaci.get('cijena')),
+      cijena: parseFloat(podaci.get('prezime')),
       datum_proizvodnje: datum,
       djelatnik: podaci.get('djelatnik'),
       tezina: podaci.get('tezina'),
-      sifraDje: this.state.sifraDje
+      sifradjelatnici: this.state.sifradjelatnici
     });
+    
   }
+
+
+
   render() {
     
-   const { voz} = this.state;
-   const { dje} = this.state;
+   const { vozilo} = this.state;
+   const { djelatnici} = this.state;
 
 
 
@@ -115,14 +127,14 @@ export default class PromjeniDjelatnik extends Component {
 
         <Form.Group className="mb-3" controlId="naziv">
             <Form.Label>naziv</Form.Label>
-            <Form.Control type="text" name="Ime" placeholder="naziv" defaultValue={voz.naziv} maxLength={255} required/>
+            <Form.Control type="text" name="Ime" placeholder="naziv" defaultValue={vozilo.naziv} maxLength={255} required/>
           </Form.Group>
 
 
           
           <Form.Group className="mb-3" controlId="cijena">
             <Form.Label>cijena</Form.Label>
-            <Form.Control type="text" name="cijena" placeholder="500" defaultValue={voz.cijena} />
+            <Form.Control type="text" name="cijena" placeholder="500" defaultValue={vozilo.cijena} />
             <Form.Text className="text-muted">
              Ne smije biti negativna
             </Form.Text>
@@ -131,31 +143,30 @@ export default class PromjeniDjelatnik extends Component {
          
           <Form.Group className="mb-3" controlId="datum_proizvodnje">
             <Form.Label>datum_proizvodnje</Form.Label>
-            <Form.Control type="date" name="datum_proizvodnje" placeholder="" defaultValue={voz.datum_proizvodnje} />
+            <Form.Control type="date" name="datum_proizvodnje" placeholder="" defaultValue={vozilo.datum_proizvodnje} />
           </Form.Group>
 
 
           <Form.Group className="mb-3" controlId="djelatnik">
             <Form.Label>djelatnik</Form.Label>
-            <Form.Select defaultValue={voz.sifraDje}  onChange={e => {
-              this.setState({ sifraDje: e.target.value});
+            <Form.Select defaultValue={vozilo.sifraDje}  onChange={e => {
+              this.setState({ sifradjelatnici: e.target.value});
             }}>
-            {dje && dje.map((djelatnik,index) => (
-                  <option key={index} value={djelatnik.sifra}>{djelatnik.naziv}</option>
+            {djelatnici && djelatnici.map((Djelatnici,index) => (
+                  <option key={index} value={Djelatnici.id}>{Djelatnici.naziv}</option>
 
             ))}
             </Form.Select>
           </Form.Group>
 
+          
 
+               
           <Form.Group className="mb-3" controlId="tezina">
             <Form.Label>tezina</Form.Label>
-            <Form.Control type="text" name="tezina kg" placeholder="2000000" defaultValue={voz.tezina}  />
-            <Form.Text className="text-muted">
-             Ne smije biti negativan
-            </Form.Text>
+            <Form.Control type="text" name="tezina" placeholder="1000000" defaultValue={vozilo.tezina} maxLength={255} required/>
           </Form.Group>
-        
+
          
           <Row>
             <Col>

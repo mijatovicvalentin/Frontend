@@ -50,9 +50,9 @@ export default class DodajUsluga extends Component {
     this.DodajUsluga({
       Naziv: podaci.get('Naziv'),
       destinacija: podaci.get('destinacija'),
+      nacin_placanja: (podaci.get('nacin_placanja')),
       cijena: parseFloat(podaci.get('cijena')),
       broj_mjesta: (podaci.get('broj_mjesta')),
-      nacin_placanja: parseFloat(podaci.get('nacin_placanja')),
     
     });
     
@@ -77,6 +77,16 @@ export default class DodajUsluga extends Component {
           </Form.Group>
 
 
+   
+          <Form.Group className="mb-3" controlId="nacin_placanja">
+            <Form.Label>nacin_placanja</Form.Label>
+            <Form.Control type="text" name="nacin_placanja" placeholder="2" />
+            <Form.Text className="text-muted">
+             Ne smije biti negativna
+            </Form.Text>
+          </Form.Group>
+          
+
 
           <Form.Group className="mb-3" controlId="Cijena">
             <Form.Label>Cijena</Form.Label>
@@ -89,12 +99,7 @@ export default class DodajUsluga extends Component {
 
 
 
-          <Form.Group className="mb-3" controlId="nacin_placanja">
-            <Form.Label>nacin_placanja</Form.Label>
-            <Form.Control type="text" name="odaberite nacin plaćanja" placeholder="1 - 2" />
-          </Form.Group>
-
-
+      
 
           <Form.Group className="mb-3" controlId="broj_mjesta">
             <Form.Label>broj_mjesta</Form.Label>

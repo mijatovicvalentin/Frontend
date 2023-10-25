@@ -57,7 +57,7 @@ export default class DodajVozilo extends Component {
       .then(response => {
         this.setState({
           djelatnici: response.data,
-          sifradjelatnik: response.data[0].sifra
+          sifradjelatnik: response.data[0].id
         });
 
       })
@@ -78,10 +78,11 @@ export default class DodajVozilo extends Component {
     console.log(podaci.get('tezina'));
     let datum = moment.utc(podaci.get('datum_proizvodnje') + ' ' + podaci.get('vrijeme'));
     console.log(datum);
+    
 
     this.dodajVozilo({
       naziv: podaci.get('naziv'),
-      cijena: parseFloat(podaci.get('prezime')),
+      cijena: parseFloat(podaci.get('cijena')),
       datum_proizvodnje: datum,
       djelatnik: podaci.get('djelatnik'),
       tezina: podaci.get('tezina'),
@@ -136,11 +137,9 @@ export default class DodajVozilo extends Component {
      
           <Form.Group className="mb-3" controlId="tezina">
             <Form.Label>tezina</Form.Label>
-            <Form.Control type="text" name="tezina u kg" placeholder="5000000" />
-            <Form.Text className="text-muted">
-             Ne smije biti negativna
-            </Form.Text>
+            <Form.Control type="text" name="tezina" placeholder="1000000" maxLength={255} required/>
           </Form.Group>
+
           
 
           <Row>

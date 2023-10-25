@@ -4,15 +4,15 @@ import http from "../http-common";
 class UslugaDataService{
 
     async get(){
-        return await http.get('/usluga');
+        return await http.get('/Usluga');
     }
 
-    async getBySifra(sifra) {
-        return await http.get('/usluga/' + sifra);
+    async getBySifra(id) {
+        return await http.get('/usluga/' + id);
       }
 
-    async delete(sifra){
-        const odgovor = await http.delete('/usluga/' + sifra)
+    async delete(id){
+        const odgovor = await http.delete('/Usluga/' + id)
         .then(response => {
             return {ok: true, poruka: 'Obrisao uspješno'};
         })
@@ -24,9 +24,9 @@ class UslugaDataService{
     }
 
 
-    async post(Usluga){
+    async post(usluga){
         //console.log(smjer);
-        const odgovor = await http.post('/usluga',Usluga)
+        const odgovor = await http.post('/usluga',usluga)
            .then(response => {
              return {ok:true, poruka: 'Unio usluga'}; // return u odgovor
            })
@@ -38,12 +38,14 @@ class UslugaDataService{
            return odgovor;
     }
 
-    async put(sifra,usluga){
-        const odgovor = await http.put('/usluga/' + sifra,usluga)
+    async put(id,usluga){
+        //console.log(smjer);
+        const odgovor = await http.put('/usluga/' + id,usluga)
            .then(response => {
              return {ok:true, poruka: 'Promjenio usluga'}; // return u odgovor
            })
            .catch(error => {
+            //console.log(error.response);
              return {ok:false, poruka: error.response.data}; // return u odgovor
            });
      

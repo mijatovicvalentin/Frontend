@@ -34,8 +34,8 @@ export default class VrstaDjelatnika extends Component{
         });
     }
 
-    async obrisivrstadjelatnika(sifra){
-        const odgovor = await vrstedjelatnikaDataService.delete(sifra);
+    async obrisivrsta_djelatnika(id){
+        const odgovor = await vrstedjelatnikaDataService.delete(id);
         if(odgovor.ok){
             this.dohvativrstadjelatnika();
         }else{
@@ -69,12 +69,12 @@ export default class VrstaDjelatnika extends Component{
                         
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/vrsta_djelatnika/${vdd.sifra}`}>
+                            to={`/vrsta_djelatnika/${vdd.id}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.obrisivrstadjelatnika(vdd.sifra)}>
+                            onClick={()=>this.obrisivrsta_djelatnika(vdd.id)}>
                                 <FaTrash />
                             </Button>
                         </td>

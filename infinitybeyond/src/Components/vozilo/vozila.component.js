@@ -39,11 +39,10 @@ export default class Vozila extends Component{
             console.log(e);
         });
     }
-
-    async ObrisiVozila(sifra){
-        const odgovor = await VoziloDataService.delete(sifra);
+    async ObrisiVozila(id){
+        const odgovor = await VoziloDataService.delete(id);
         if(odgovor.ok){
-            this.dohvatiVozila();
+            this.DohvatiVozila();
         }else{
             alert(odgovor.poruka);
         }
@@ -96,12 +95,12 @@ export default class Vozila extends Component{
       
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/vozila/${v.sifra}`}>
+                            to={`/vozila/${v.id}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.ObrisiVozila(v.sifra)}>
+                            onClick={()=>this.ObrisiVozila(v.id)}>
                                 <FaTrash />
                             </Button>
                         </td>

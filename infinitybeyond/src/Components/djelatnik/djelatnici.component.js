@@ -39,8 +39,8 @@ export default class Djelatnici extends Component{
         });
     }
 
-    async ObrisiDjelatnika(sifra){
-        const odgovor = await DjelatnikDataService.delete(sifra);
+    async obrisiDjelatnik(id){
+        const odgovor = await DjelatnikDataService.delete(id);
         if(odgovor.ok){
             this.DohvatiDjelatnici();
         }else{
@@ -83,12 +83,12 @@ export default class Djelatnici extends Component{
       
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/djelatnici/${Dj.sifra}`}>
+                            to={`/djelatnici/${Dj.id}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.ObrisiDjelatnika(Dj.sifra)}>
+                            onClick={()=>this.obrisiDjelatnik(Dj.id)}>
                                 <FaTrash />
                             </Button>
                         </td>

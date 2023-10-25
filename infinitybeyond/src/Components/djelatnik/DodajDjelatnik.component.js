@@ -16,7 +16,7 @@ export default class DodajDjelatnik extends Component {
 
   constructor(props) {
     super(props);
-    this.dodajDjelatnik = this.DodajDjelatnik.bind(this);
+    this.dodajDjelatnik = this.dodajDjelatnik.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.Dohvativrstadjelatnika = this.Dohvativrstadjelatnika.bind(this);
 
@@ -31,7 +31,7 @@ export default class DodajDjelatnik extends Component {
 
   
 
-  async DodajDjelatnik(dje) {
+  async dodajDjelatnik(dje) {
     const odgovor = await DjelatnikDataService.post(dje);
     if(odgovor.ok){
       window.location.href='/djelatnici';
@@ -51,7 +51,7 @@ export default class DodajDjelatnik extends Component {
       .then(response => {
         this.setState({
           vd: response.data,
-          sifravrstadjelatnika: response.data[0].sifra
+          sifravrstadjelatnika: response.data[0].id
         });
 
       })
@@ -70,6 +70,7 @@ export default class DodajDjelatnik extends Component {
     console.log(podaci.get('oib'));
     console.log(podaci.get('kontakt'));
     console.log(podaci.get('jedinstvenibroj'));
+    console.log(podaci.get('vrsta_djelatnika'))
 
     this.dodajDjelatnik({
       ime: podaci.get('ime'),
@@ -123,8 +124,8 @@ export default class DodajDjelatnik extends Component {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="vrstadjelatnika">
-            <Form.Label>vrstadjelatnika</Form.Label>
+          <Form.Group className="mb-3" controlId="vrsta_djelatnika">
+            <Form.Label>vrsta_djelatnika</Form.Label>
             <Form.Select onChange={e => {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>

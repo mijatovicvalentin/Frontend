@@ -36,8 +36,8 @@ export default class Usluge extends Component{
         });
     }
 
-    async ObrisiUslugu(sifra){
-        const odgovor = await UslugaDataService.delete(sifra);
+    async ObrisiUslugu(id){
+        const odgovor = await UslugaDataService.delete(id);
         if(odgovor.ok){
             this.DohvatiUsluge();
         }else{
@@ -89,12 +89,12 @@ export default class Usluge extends Component{
                         <td>{usl.broj_mjesta}</td>
                         <td>
                         <Link className="btn btn-primary gumb"
-                            to={`/usluge/${usl.sifra}`}>
+                            to={`/usluge/${usl.id}`}>
                                 <FaEdit />
                             </Link>
 
                             <Button variant="danger" className="gumb"
-                            onClick={()=>this.ObrisiUslugu(usl.sifra)}>
+                            onClick={()=>this.ObrisiUslugu(usl.id)}>
                                 <FaTrash />
                             </Button>
                         </td>

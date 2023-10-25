@@ -5,20 +5,17 @@ class DjelatnikDataService {
     return http.get("/djelatnik");
   }
 
-  async getBySifra(sifra) {
-   // console.log(sifra);
-    return await http.get('/djelatnik/' + sifra);
+  async getBySifra(id) {
+    return await http.get('/djelatnik/' + id);
   }
 
-  async getPolaznici(sifra) {
-    // console.log(sifra);
-     return await http.get('/djelatnik/' + sifra + '/vrstadjelatnika');
+  async getvrsta_djelatnika(id) {
+     return await http.get('/djelatnik/' + id + '/vrstadjelatnika');
    }
  
 
 
   async post(djelatnik){
-    //console.log(smjer);
     const odgovor = await http.post('/djelatnik',djelatnik)
        .then(response => {
          return {ok:true, poruka: 'Unio djelatnik'}; // return u odgovor
@@ -32,9 +29,9 @@ class DjelatnikDataService {
 }
 
 
-  async delete(sifra){
+  async delete(id){
     
-    const odgovor = await http.delete('/djelatnik/' + sifra)
+    const odgovor = await http.delete('/djelatnik/' + id)
        .then(response => {
          return {ok:true, poruka: 'Obrisao uspješno'};
        })
@@ -46,7 +43,7 @@ class DjelatnikDataService {
        return odgovor;
      }
 
-     async obrisiDjelatnika(djelatnik, vrstadjelatnika){
+     async obrisivrsta_djelatnika(djelatnik, vrstadjelatnika){
     
       const odgovor = await http.delete('/djelatnik/obrisivrstadjelatnika/' + djelatnik + '/' + vrstadjelatnika)
          .then(response => {
@@ -60,7 +57,7 @@ class DjelatnikDataService {
          return odgovor;
        }
 
-       async dodajDjelatnika(djelatnik, vrstadjelatnika){
+       async dodajvrsta_djelatnika(djelatnik, vrstadjelatnika){
     
         const odgovor = await http.post('/djelatnik/dodajvrstadjelatnika/' + djelatnik + '/' + vrstadjelatnika)
            .then(response => {

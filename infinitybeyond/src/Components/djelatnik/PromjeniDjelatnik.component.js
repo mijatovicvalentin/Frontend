@@ -21,7 +21,7 @@ export default class PromjeniDjelatnik extends Component {
        
 
     this.djelatnik = this.DohvatiDjelatnik();
-    this.promjeniDjelatnik = this.PromjeniDjelatnik(this);
+    this.promjeniDjelatnik = this.promjeniDjelatnik(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.vrstadjelatnika = this.Dohvativrstadjelatnika();
 
@@ -53,7 +53,7 @@ export default class PromjeniDjelatnik extends Component {
    
   }
 
-  async PromjeniDjelatnik(djelatnik) {
+  async promjeniDjelatnik(djelatnik) {
     const odgovor = await DjelatnikDataService.post(djelatnik);
     if(odgovor.ok){
       // routing na smjerovi
@@ -70,7 +70,7 @@ export default class PromjeniDjelatnik extends Component {
        .then(response => {
          this.setState({
           vd: response.data,
-           sifravrstadjelatnika: response.data[0].sifra
+           sifravrstadjelatnika: response.data[0].id
          });
  
         // console.log(response.data);
@@ -88,8 +88,9 @@ export default class PromjeniDjelatnik extends Component {
     console.log(podaci.get('oib'));
     console.log(podaci.get('kontakt'));
     console.log(podaci.get('jedinstvenibroj'));
+    
 
-    this.DodajDjelatnik({
+    this.promjeniDjelatnik({
       ime: podaci.get('ime'),
       prezime: podaci.get('prezime'),
       oib: podaci.get('oib'),
@@ -152,7 +153,7 @@ export default class PromjeniDjelatnik extends Component {
               this.setState({ sifravrstadjelatnika: e.target.value});
             }}>
             {vd && vd.map((vrstadjelatnika,index) => (
-                  <option key={index} value={vrstadjelatnika.sifra}></option>
+                  <option key={index} value={vrstadjelatnika.id}></option>
 
             ))}
             </Form.Select>

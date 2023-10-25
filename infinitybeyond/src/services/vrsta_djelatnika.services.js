@@ -7,12 +7,12 @@ class vrstedjelatnikaDataService{
         return await http.get('/vrsta_djelatnika');
     }
 
-    async getBySifra(sifra) {
-        return await http.get('/vrsta_djelatnika/' + sifra);
+    async getBySifra(id) {
+        return await http.get('/vrsta_djelatnika/' + id);
       }
 
-    async delete(sifra){
-        const odgovor = await http.delete('/vrsta_djelatnika/' + sifra)
+    async delete(id){
+        const odgovor = await http.delete('/vrsta_djelatnika/' + id)
         .then(response => {
             return {ok: true, poruka: 'Obrisao uspješno'};
         })
